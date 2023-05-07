@@ -15,10 +15,14 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
+        public string Email { get; set; }
+        [Required]
         public string Tc { get; set; }
         [Required]
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public string userType { get; set; }
     }
 }

@@ -10,5 +10,9 @@ namespace Tourism_Agency_AspNet_Web_Api.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Tour> Tours { get; set; }
+        public DbSet<TourItem> TourItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
     }
 }

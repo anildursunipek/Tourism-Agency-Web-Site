@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tourism_Agency_AspNet_Web_Api.Data;
 
@@ -11,9 +12,11 @@ using Tourism_Agency_AspNet_Web_Api.Data;
 namespace Tourism_Agency_AspNet_Web_Api.Migrations
 {
     [DbContext(typeof(TourismAgencyDbContext))]
-    partial class TourismAgencyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230507180738_Fifth Migration")]
+    partial class FifthMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,8 +58,6 @@ namespace Tourism_Agency_AspNet_Web_Api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("TourItemId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -155,15 +156,7 @@ namespace Tourism_Agency_AspNet_Web_Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tourism_Agency_AspNet_Web_Api.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("TourItem");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Tourism_Agency_AspNet_Web_Api.Models.TourItem", b =>
