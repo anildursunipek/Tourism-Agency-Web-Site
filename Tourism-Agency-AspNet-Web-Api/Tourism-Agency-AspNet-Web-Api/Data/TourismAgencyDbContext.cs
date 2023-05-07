@@ -8,11 +8,11 @@ namespace Tourism_Agency_AspNet_Web_Api.Data
         public TourismAgencyDbContext(DbContextOptions options) : base(options)
         {
         }
-
         public DbSet<User> Users { get; set; }
         public DbSet<Tour> Tours { get; set; }
         public DbSet<TourItem> TourItems { get; set; }
         public DbSet<Order> Orders { get; set; }
-
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<TourItemDetail> TourItemDetail { get; set; }
     }
 }
