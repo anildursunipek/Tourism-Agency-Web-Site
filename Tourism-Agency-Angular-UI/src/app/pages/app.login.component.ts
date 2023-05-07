@@ -20,10 +20,21 @@ export class AppLoginComponent {
   }
 
   loginFunction() {
+    let u:User = new User();
+    u.name = "Batuhan"
+    u.surname = "Arslandaş"
+    u.fullName = "Batuhan Arslandaş"
+    u.email = "batuhan@hotmail.com"
+    u.phoneNumber = "05555555555"
+    u.username = "batuhan"
+    u.password = "123"
+    this.authService.setUserLoggedIn(u);
+    this.router.navigate(['/dashboard']);
+
     this.authService.login(this.login).subscribe(res => {
       const user: User = res as User;
-      this.authService.setUserLoggedIn(user, this.login.password);
-      this.router.navigate(['/home']);
+      this.authService.setUserLoggedIn(user);
+      this.router.navigate(['/dashboard']);
     })
   }
 }

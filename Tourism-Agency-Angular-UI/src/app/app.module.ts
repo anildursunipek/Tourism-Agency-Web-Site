@@ -145,6 +145,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { TourAddComponent } from './components/tour/tour-add/tour-add.component';
 import { TourItemComponent } from './components/tour/tour-item/tour-item.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TourDetailComponent } from './components/tour/tour-detail/tour-detail.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -285,7 +286,8 @@ FullCalendarModule.registerPlugins([
         UserListComponent,
         TourAddComponent,
         TourItemComponent,
-        DashboardComponent
+        DashboardComponent,
+        TourDetailComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

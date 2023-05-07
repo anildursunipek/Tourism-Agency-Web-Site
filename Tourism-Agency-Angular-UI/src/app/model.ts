@@ -26,7 +26,27 @@ export class TourItem {
     name:string = "";
     address:string = "";
     price:number;
-    description:string = "";
-    imageId:string;
+    shortDescription:string = "";
+    longDescription:string = "";
+    imageUrls:any[] = new Array();
     tour:Tour = new Tour();
+}
+
+export class Comment {
+    id:string;
+    description:string = "";
+    tourItem:TourItem = new TourItem();
+    user:User = new User();
+}
+
+export class Order{
+    id:string;
+    user:User = new User();
+    tourItem:TourItem = new TourItem();
+    fullName:string = "";
+    phoneNumber:string = "";
+    date:Date = new Date();
+    tourTime:number = 1;
+    adult:number = 1;
+    child:number = 1;
 }

@@ -21,9 +21,6 @@ export class TourItemComponent implements OnInit {
 
   deleteTourItem: TourItem = new TourItem();
 
-  input: FormData = new FormData();
-  fileToUpload: any = undefined;
-
   constructor(
     private messageService: MessageService,
     private tourItemService: TourItemService,
@@ -42,7 +39,7 @@ export class TourItemComponent implements OnInit {
 
   saveTourItem() {
     this.submitted = true;
-    if (this.tourItem.name.trim() && this.tourItem.address.trim() && this.tourItem.price > 0 && this.tourItem.description.trim()) {
+    if (this.tourItem.name.trim() && this.tourItem.address.trim() && this.tourItem.price > 0 && this.tourItem.longDescription.trim() && this.tourItem.shortDescription.trim()) {
       this.submitted = false;
       this.tourItemService.saveTourItem(this.tourItem).subscribe(res => {
         this.tourItem = new TourItem();
@@ -94,24 +91,6 @@ export class TourItemComponent implements OnInit {
     })
   }
 
-  myUploader(event): void {
-
-    this.input = new FormData();
-    this.fileToUpload = undefined
-
-    if (event.files.length === 0) {
-      this.messageService.add({ severity: 'error', summary: 'Hata', detail: 'Dosya seçilmedi.' })
-      return;
-    }
-
-    this.fileToUpload = event.files[0];
-    this.input.append('image', this.fileToUpload);
-
-  }
-
-  imageUrl(id: string) {
-    return environment.SERVER_API_URL + "/image/read/" + id
-  }
 
   myMessageService(severity: string, summary: string, detail: string) {
     this.messageService.add({ severity: severity, summary: summary, detail: detail });

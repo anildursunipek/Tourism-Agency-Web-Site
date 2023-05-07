@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div class="grid" *ngIf="tourItems">
+<div class="grid" *ngIf="tourItems && isDetail">
     <div class="col-12">
         <h1>
             {{name}} - Batuhan Turizm Seyahat Acentası
@@ -34,14 +34,14 @@
                     <p-button label="X" styleClass="p-button-danger"
                         (click)="deleteTourItemFunction(tourItem)"></p-button>
                 </div>
-                <img alt="Card" [src]="imageUrl(tourItem.imageId)">
+                <img alt="Card" [src]="tourItem.imageUrls[0]">
             </ng-template>
             <hr>
             <div class="flex align-items-center justify-content-between">
                 <span style="font-weight: 600; font-size:25px; color: red;">
                     {{tourItem.price|number: '1.2-2'}}₺
                 </span>
-                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary" (click)="tourItemDetail(tourItem)"></p-button>
             </div>
         </p-card>
     </div>
@@ -55,7 +55,7 @@
                 <span style="font-weight: 600; font-size:25px; color: red;">
                     300 ₺
                 </span>
-                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary" (click)="tourItemDetail()"></p-button>
             </div>
         </p-card>
     </div>
@@ -172,3 +172,5 @@
         </p-card>
     </div>
 </div>
+
+<app-tour-detail *ngIf="!isDetail" [tourItem]="selectedTourItem"></app-tour-detail>

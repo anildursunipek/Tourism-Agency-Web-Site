@@ -25,15 +25,14 @@
             </p-inputNumber>
         </div>
         <div class="field col-12" *ngIf="tourItem.tour.id">
-            <label htmlFor="name2">Açıklama</label>
+            <label htmlFor="name2">Kısa açıklama</label>
             <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" placeholder="Açıklama"
-                [(ngModel)]="tourItem.description"></textarea>
+                [(ngModel)]="tourItem.shortDescription"></textarea>
         </div>
-
         <div class="field col-12" *ngIf="tourItem.tour.id">
-            <p-fileUpload customUpload="true" auto="true" name="mediafile" chooseLabel="Fotoğraf Seç" #fileInput
-                name="demo[]" (uploadHandler)="myUploader($event)" accept=".pdf,.jpg,.jpeg,.png" maxFileSize="3000000">
-            </p-fileUpload>
+            <label htmlFor="name2">Uzun açıklama</label>
+            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" placeholder="Açıklama"
+                [(ngModel)]="tourItem.longDescription"></textarea>
         </div>
 
         <div class="field col-12" *ngIf="tourItem.tour.id">
@@ -50,7 +49,7 @@
                     <p-button label="X" styleClass="p-button-danger"
                         (click)="deleteTourItemFunction(tourItem)"></p-button>
                 </div>
-                <img alt="Card" [src]="imageUrl(tourItem.imageId)">
+                <img alt="Card" [src]="tourItem.imageUrls[0]">
             </ng-template>
             <hr>
             <div class="flex align-items-center justify-content-between">
@@ -114,7 +113,7 @@
 
 <!-- <p-card [header]="tourItem.name" [subheader]="tourItem.address" styleClass="p-card-shadow">
             <ng-template pTemplate="header">
-                <img alt="Card" [src]="imageUrl(tourItem.imageId)">
+                <img alt="Card" [src]="tourItem.imageUrls[0]">
             </ng-template>
             <hr>
             <div class="flex align-items-center justify-content-between">

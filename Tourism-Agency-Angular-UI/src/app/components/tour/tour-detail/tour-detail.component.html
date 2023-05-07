@@ -1,0 +1,116 @@
+<p-toast></p-toast>
+<h1>{{tourItem.name}}</h1>
+<h4><i class="pi pi-map-marker"></i> {{tourItem.address}}</h4>
+<div class="grid">
+    <div class="col-8">
+        <div class="grid">
+            <div class="col-12">
+                <p-card>
+                    <p-galleria [value]="tourItem.imageUrls" [responsiveOptions]="galleriaResponsiveOptions"
+                        [containerStyle]="{'max-width': '800px'}" [numVisible]="6" [circular]="true">
+                        <ng-template pTemplate="item" let-item>
+                            <img [src]="item.thumbnailImageSrc" style="width: 100%; display: block;" />
+                        </ng-template>
+                        <ng-template pTemplate="thumbnail" let-item>
+                            <div class="grid nogutter justify-center">
+                                <img [src]="item.thumbnailImageSrc" style="display: block; width: 90px;" />
+                            </div>
+                        </ng-template>
+                    </p-galleria>
+                </p-card>
+            </div>
+
+            <div class="col-12">
+                <p-card>
+                    <h4>TESİS HAKKINDA</h4>
+                    <div [innerHTML]="tourItem.shortDescription">
+                    </div>
+                </p-card>
+            </div>
+            <div class="col-12">
+                <p-card>
+                    <h4>OTEL KONSEPTİ</h4>
+                    <div [innerHTML]="tourItem.longDescription">
+                    </div>
+                </p-card>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-4 grid">
+        <div class="col-12 p-fluid">
+            <p-card>
+                <h2>{{tourItem.name}}</h2>
+                <h6><i class="pi pi-map-marker"></i> {{tourItem.address}}</h6>
+                <hr>
+                <div class="p-formgrid grid">
+                    <div class="field col-6">
+                        <label htmlFor="name2">Adınız Soyadınız</label>
+                        <input pInputText id="name2" placeholder="Ad" type="text" [(ngModel)]="order.fullName" />
+                    </div>
+                    <div class="field col-6">
+                        <label>Telefon numarası</label>
+                        <p-inputMask mask="(999) 999-9999" placeholder="(999) 999-9999"
+                            [(ngModel)]="order.phoneNumber"></p-inputMask>
+                    </div>
+                    <div class="field col-6">
+                        <label htmlFor="name2">Tarih</label>
+                        <p-calendar inputId="calendar" [(ngModel)]="order.date"></p-calendar>
+                    </div>
+                    <div class="field col-6">
+                        <label htmlFor="name2">Kaç Gün</label>
+                        <p-inputNumber inputId="inputnumber" [(ngModel)]="order.tourTime" min="1"></p-inputNumber>
+                    </div>
+                    <div class="field col-6">
+                        <label htmlFor="name2">Yetişkin</label>
+                        <p-inputNumber inputId="inputnumber" [(ngModel)]="order.adult"></p-inputNumber>
+                    </div>
+                    <div class="field col-6">
+                        <label htmlFor="name2">Çocuk</label>
+                        <p-inputNumber inputId="inputnumber" [(ngModel)]="order.child"></p-inputNumber>
+                    </div>
+
+                    <div class="field col-12">
+                        <button pButton pRipple type="button" label="Kaydet" class="p-button-raised mr-2 mb-2"
+                            (click)="saveOrder()"></button>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+        <div class="col-12">
+            <p-card>
+                <div class="grid">
+
+                    <div class="col-12">
+                        <h2>Yorumlar</h2>
+                    </div>
+                    <div class="col-2">
+                        <p-avatar [label]="user.name[0]+user.surname[0]" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+                    </div>
+                    <div class="col-10 p-formgrid">
+                        <div class="field">
+                            <textarea rows="5" pInputTextarea autoResize="autoResize" placeholder="Açıklama"
+                                [(ngModel)]="userComment.description" style="width: 100%;"></textarea>
+                        </div>
+                        <div class="field">
+                            <button pButton pRipple type="button" label="Gönder" class="p-button-raised mr-2 mb-2"
+                                style="width: 100%;" (click)="sendComment()"></button>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="grid" *ngFor="let comment of comments">
+                            <div class="col-2">
+                                <p-avatar [label]="comment.user.name[0]+comment.user.surname[0]" styleClass="mr-2"
+                                    size="large" shape="circle"></p-avatar>
+                            </div>
+                            <div class="col-10">
+                                {{comment.description}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </p-card>
+        </div>
+    </div>
+</div>

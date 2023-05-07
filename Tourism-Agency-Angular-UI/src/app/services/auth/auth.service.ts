@@ -13,18 +13,12 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient) { }
 
   login(login:Login): Observable<User> {
-    return this.http.get<User>(environment.SERVER_API_URL + '/login',
-      { headers: { authorization: this.createBasicAuthToken(login) } });
-  }
-
-  createBasicAuthToken(login: Login) {
-    return 'Basic ' + window.btoa(login.username + ":" + login.password);
+    return this.http.post<User>(environment.SERVER_API_URL + '/login',login);
   }
 
   
-  setUserLoggedIn(user:User, password:string){
+  setUserLoggedIn(user:User){
     localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('usertoken', 'Basic ' + btoa(user.username + ':' + password));
   }
 
   getCurrentUser(){
