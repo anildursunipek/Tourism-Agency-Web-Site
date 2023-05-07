@@ -1,0 +1,38 @@
+<p-toast></p-toast>
+
+<div class="card p-fluid">
+    <div class="text-center">
+        <h5>Kullanıcı ekle</h5>
+    </div>
+    <div class="p-formgrid grid">
+        <div class="field col-4">
+            <label htmlFor="name2">Ad</label>
+            <input pInputText id="name2" placeholder="Ad" type="text" [(ngModel)]="user.name"
+                [ngClass]="{'ng-dirty ng-invalid': submitted && user.name == ''}" />
+        </div>
+        <div class="field col-4">
+            <label>Soyad</label>
+            <input pInputText id="email2" placeholder="Soyad" type="text" [(ngModel)]="user.surname"
+                [ngClass]="{'ng-dirty ng-invalid': submitted && user.surname == ''}" />
+        </div>
+        <div class="field col-4">
+            <label>Telefon numarası</label>
+            <p-inputMask mask="(999) 999-9999" placeholder="(999) 999-9999" [(ngModel)]="user.phoneNumber"
+                [ngClass]="{'ng-dirty ng-invalid': submitted && user.phoneNumber == ''}"></p-inputMask>
+        </div>
+        <div class="field col-7">
+            <label>Email</label>
+            <input pInputText id="email2" placeholder="deneme@hotmail.com" type="text" [(ngModel)]="user.email"
+                [ngClass]="{'ng-dirty ng-invalid': submitted && user.email == ''}" />
+        </div>
+        <div class="field col-5">
+            <label>Tc kimlik</label>
+            <p-inputMask mask="99999999999" placeholder="12345678901" [(ngModel)]="user.tc"
+                [ngClass]="{'ng-dirty ng-invalid': submitted && user.tc == ''}"></p-inputMask>
+        </div>
+        <div class="field col-12">
+            <button pButton pRipple type="button" label="Kaydet" class="p-button-raised mr-2 mb-2"
+                (click)="saveUser()"></button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,174 @@
+<div class="grid">
+    <div class="col-12">
+        <p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions" [numVisible]="5" [circular]="true"
+            [autoPlay]="true" [transitionInterval]="3000">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item" style="width: 100%; display: block;" />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+                <div class="grid grid-nogutter justify-content-center">
+                    <img [src]="item" style="display: block; width: 70px; height: 50px;" />
+                </div>
+            </ng-template>
+        </p-galleria>
+    </div>
+</div>
+
+<div class="grid" *ngIf="items">
+    <div class="col-12">
+        <p-menubar [model]="items" (click)="asd($event)">
+        </p-menubar>
+    </div>
+</div>
+
+<div class="grid" *ngIf="tourItems">
+    <div class="col-12">
+        <h1>
+            {{name}} - Batuhan Turizm Seyahat Acentası
+        </h1>
+    </div>
+    <div class="col-3" *ngFor="let tourItem of tourItems">
+        <p-card [header]="tourItem.name" [subheader]="tourItem.address" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <div style="text-align: right;">
+                    <p-button label="X" styleClass="p-button-danger"
+                        (click)="deleteTourItemFunction(tourItem)"></p-button>
+                </div>
+                <img alt="Card" [src]="imageUrl(tourItem.imageId)">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    {{tourItem.price|number: '1.2-2'}}₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-3">
+        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    300 ₺
+                </span>
+                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
+            </div>
+        </p-card>
+    </div>
+</div>

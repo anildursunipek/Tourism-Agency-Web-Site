@@ -1,0 +1,14 @@
+<div class="login-body">
+    <div class="login-wrapper">
+        <div class="login-panel">
+            <a [routerLink]="['/']" class="logo">
+                <img src="assets/layout/images/logo-freya-single.svg" alt="freya-layout" />
+            </a>
+
+            <input pInputText id="username" placeholder="Kullanıcı Adı" [(ngModel)]="login.username" />
+            <input pPassword id="password" placeholder="Şifre" [(ngModel)]="login.password" />
+            <button pButton pRipple label="GİRİŞ YAP" type="button" (click)="loginFunction()" ></button>
+
+        </div>
+    </div>
+</div>

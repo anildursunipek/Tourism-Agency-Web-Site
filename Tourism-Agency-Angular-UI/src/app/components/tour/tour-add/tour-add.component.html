@@ -1,0 +1,70 @@
+<p-toast></p-toast>
+<div class="card p-fluid">
+    <div class="text-center">
+        <h5>Tur ekle</h5>
+    </div>
+    <div class="p-formgrid grid">
+        <div class="field col">
+            <label htmlFor="name2">Ad</label>
+            <input pInputText id="name2" placeholder="Ad" type="text" [(ngModel)]="tour.name"
+                [ngClass]="{'ng-dirty ng-invalid': submitted && tour.name == ''}" />
+        </div>
+        <div class="field col">
+            <label>Tur kategori</label>
+            <p-dropdown [options]="tours" [(ngModel)]="tour.categoryTourId" optionValue="id" optionLabel="name"
+                placeholder="Tur seç" [showClear]="true"></p-dropdown>
+        </div>
+
+        <div class="field col-12">
+            <button pButton pRipple type="button" label="Kaydet" class="p-button-raised mr-2 mb-2"
+                (click)="saveTour()"></button>
+        </div>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <div class="text-center">
+                <h5>Turlar</h5>
+            </div>
+            <p-table #dt [value]="tours" responsiveLayout="scroll" [rows]="5" [paginator]="true"
+                [showCurrentPageReport]="true" [rowHover]="true">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Ad</th>
+                        <th>Kategori</th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-tour>
+                    <tr>
+                        <td>{{tour.name}}</td>
+                        <td>{{tour.categoryTourId != null ? tour.categoryTourId:""}}</td>
+                        <td>
+                            <div class="flex ">
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2" (click)="editTour(tour)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="deleteTourFunction(tour)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="deleteTourDialog" header="Onaylama" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>Silmek istediğine emin misin <b>{{deleteTour.name}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+                    (click)="deleteUserDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
+                    (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>
