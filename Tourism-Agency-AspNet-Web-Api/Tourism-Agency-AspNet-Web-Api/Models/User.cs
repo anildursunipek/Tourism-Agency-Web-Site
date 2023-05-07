@@ -23,6 +23,6 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
         [Required]
         public string Password { get; set; }
         [Required]
-        public string userType { get; set; }
+        public string UserType { get; set; }
     }
 }
