@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Tourism-Agency-AspNet-Web-Api.props" />
+</Project>
