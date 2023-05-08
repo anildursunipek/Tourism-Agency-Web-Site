@@ -6,10 +6,10 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
     public class TourItem
     {
         [Required]
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [ForeignKey("Tour")]
