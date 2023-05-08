@@ -30,6 +30,20 @@
             <p-inputMask mask="99999999999" placeholder="12345678901" [(ngModel)]="user.tc"
                 [ngClass]="{'ng-dirty ng-invalid': submitted && user.tc == ''}"></p-inputMask>
         </div>
+        <div class="field col-4">
+            <label>Kullanıcı Adı</label>
+            <input pInputText id="email2" placeholder="Kullanıcı Adı" type="text" [(ngModel)]="user.username"
+                [ngClass]="{'ng-dirty ng-invalid': submitted && user.username == ''}" />
+        </div>
+        <div class="field col-4">
+            <label>Şifre</label>
+            <input pInputText id="email2" placeholder="Şifre" type="text" [(ngModel)]="user.password"
+                [ngClass]="{'ng-dirty ng-invalid': submitted && user.password == ''}" />
+        </div>
+        <div class="field col-4">
+            <label>Rol</label>
+            <input pInputText id="email2" placeholder="Rol" type="text" [(ngModel)]="user.userType" [disabled]="true" />
+        </div>
         <div class="field col-12">
             <button pButton pRipple type="button" label="Kaydet" class="p-button-raised mr-2 mb-2"
                 (click)="saveUser()"></button>

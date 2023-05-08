@@ -40,6 +40,8 @@ export class UserListComponent implements OnInit {
       user.surname = "arslandas " + i;
       user.fullName = "batuhan " + i + " " + "arslandas " + i;
       user.phoneNumber = "arslandas " + i;
+      user.username = "username " + i;
+      user.password = "password " + i;
       user.email = arrFunction(i.toString(), 6) + "@hotmail.com"
       user.tc = arrFunction(i.toString(), 11)
 

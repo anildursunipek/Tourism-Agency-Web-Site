@@ -8,6 +8,7 @@ export class User{
     tc:string = "";
     username:string = "";
     password:string = "";
+    userType:string = "CUSTOMER";
 }
 
 export class Login {

@@ -20,7 +20,8 @@ export class AppLoginComponent {
   }
 
   loginFunction() {
-    let u:User = new User();
+    let u: User = new User();
+
     u.name = "Batuhan"
     u.surname = "Arslandaş"
     u.fullName = "Batuhan Arslandaş"
@@ -28,8 +29,14 @@ export class AppLoginComponent {
     u.phoneNumber = "05555555555"
     u.username = "batuhan"
     u.password = "123"
-    this.authService.setUserLoggedIn(u);
-    this.router.navigate(['/dashboard']);
+    if (this.login.username == "admin") {
+      u.userType = "ADMIN"
+      this.authService.setUserLoggedIn(u);
+      this.router.navigate(['/component/order/list']);
+    } else {
+      this.authService.setUserLoggedIn(u);
+      this.router.navigate(['/dashboard']);
+    }
 
     this.authService.login(this.login).subscribe(res => {
       const user: User = res as User;

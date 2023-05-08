@@ -13,4 +13,8 @@ export class OrderService {
   saveOrder(order: Order) {
     return this.http.post<Order>(environment.SERVER_API_URL + "/order/save", order)
   }
+
+  getOrders() {
+    return this.http.get<Order[]>(environment.SERVER_API_URL + "/order/get")
+  }
 }

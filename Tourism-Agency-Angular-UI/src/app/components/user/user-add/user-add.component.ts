@@ -53,7 +53,7 @@ export class UserAddComponent implements OnInit {
   }
 
   formControl() {
-    return this.user.name.trim() && this.user.surname.trim() && this.user.phoneNumber.trim() && this.user.tc.trim() && this.user.email.trim();
+    return this.user.name.trim() && this.user.surname.trim() && this.user.phoneNumber.trim() && this.user.tc.trim() && this.user.email.trim() && this.user.username && this.user.password;
   }
 
   myMessageService(severity: string, summary: string, detail: string) {
