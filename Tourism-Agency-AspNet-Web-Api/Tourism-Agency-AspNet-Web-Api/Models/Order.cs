@@ -27,9 +27,11 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
         [Required]
         [JsonIgnore]
         public User User { get; set; } // navigation property
+        public Guid UserId { get; set; }
 
         [Required]
         [JsonIgnore]
         public TourItem TourItem { get; set; } // navigation property
+        public Guid TourItemId { get; set; }
     }
 }

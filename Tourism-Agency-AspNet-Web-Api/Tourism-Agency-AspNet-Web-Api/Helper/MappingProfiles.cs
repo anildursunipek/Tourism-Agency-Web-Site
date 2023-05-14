@@ -18,6 +18,8 @@ namespace Tourism_Agency_AspNet_Web_Api.Helper
             CreateMap<TourItemDetailDto, TourItemDetail>();
             CreateMap<CommentDto, Comment>();
             CreateMap<Comment, CommentDto>();
+            CreateMap<Order, OrderDto>();
+            CreateMap<OrderDto, Order>();
         }
     }
 }
