@@ -66,7 +66,6 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
             user.Password = updateUserRequest.Password;
             user.UserType = updateUserRequest.UserType;
 
-
             await _tourismAgencyDbContext.SaveChangesAsync();
 
             return Ok(user);

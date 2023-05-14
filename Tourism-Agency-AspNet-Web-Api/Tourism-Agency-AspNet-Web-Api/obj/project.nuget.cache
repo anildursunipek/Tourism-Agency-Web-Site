@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "wXXy3ztrXJKbcog96IpKAN8mhTsB0HPs2JDrhgJ59q40M8dTEdKDgrMWMnNNY61mQZ9n5YBgHTw3JBAjQX87yw==",
+  "dgSpecHash": "GacdmOyr2D/b8KN1EYGMuMMImcH0uOOKBx2SJNuFGaVRZujeIjpHYJimm7KA8kj4fEVDLxWJWvBoalxHGIGndQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\fb-du\\Desktop\\Github\\tourism-agency-web-site\\Tourism-Agency-AspNet-Web-Api\\Tourism-Agency-AspNet-Web-Api\\Tourism-Agency-AspNet-Web-Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\fb-du\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\fb-du\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\fb-du\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\fb-du\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\fb-du\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\fb-du\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\fb-du\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\fb-du\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\fb-du\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.0\\microsoft.data.sqlclient.5.1.0.nupkg.sha512",
     "C:\\Users\\fb-du\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.0\\microsoft.data.sqlclient.sni.runtime.5.1.0.nupkg.sha512",
     "C:\\Users\\fb-du\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0-preview.3.23174.2\\microsoft.entityframeworkcore.8.0.0-preview.3.23174.2.nupkg.sha512",
