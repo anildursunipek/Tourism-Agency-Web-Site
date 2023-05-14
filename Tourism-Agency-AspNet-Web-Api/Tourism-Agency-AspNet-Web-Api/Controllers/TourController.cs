@@ -32,9 +32,8 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         public async Task<IActionResult> AddTour([FromBody] TourDto tourDtoRequest)
         {
             if(tourDtoRequest == null)
-            {
                 return BadRequest(ModelState);
-            }
+
             var tour = await _tourismAgencyDbContext.Tours
                 .Where(t => t.Name.Trim().ToLower() == tourDtoRequest.Name.Trim().ToLower())
                 .FirstOrDefaultAsync();
@@ -45,9 +44,7 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
             }
 
             if(!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             var tourMap = _mapper.Map<Tour>(tourDtoRequest);
             await _tourismAgencyDbContext.AddAsync(tourMap);
@@ -62,9 +59,8 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
             var tour = await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(x => x.Id == id);
 
             if (tour == null)
-            {
                 return NotFound();
-            }
+
             return base.Ok(_mapper.Map<TourDto>(tour));
         }
 
@@ -74,10 +70,13 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         {
             if(updateTourRequest == null)
                 return BadRequest(ModelState);
+
             if(id != updateTourRequest.Id)
                 return BadRequest(ModelState);
+
             if (!await _tourismAgencyDbContext.Tours.AnyAsync(t => t.Id == id))
                 return NotFound();
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
