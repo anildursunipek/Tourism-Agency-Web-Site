@@ -16,6 +16,8 @@ namespace Tourism_Agency_AspNet_Web_Api.Helper
             CreateMap<TourItemDto, TourItem>();
             CreateMap<TourItemDetail, TourItemDetailDto>();
             CreateMap<TourItemDetailDto, TourItemDetail>();
+            CreateMap<CommentDto, Comment>();
+            CreateMap<Comment, CommentDto>();
         }
     }
 }
