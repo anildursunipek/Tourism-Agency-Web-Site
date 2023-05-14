@@ -10,7 +10,10 @@ namespace Tourism_Agency_AspNet_Web_Api.Helper
         {
             CreateMap<Tour, TourDto>();
             CreateMap<TourDto, Tour>();
-
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
+            CreateMap<TourItem, TourItemDto>();
+            CreateMap<TourItemDto, TourItem>();
         }
     }
 }
