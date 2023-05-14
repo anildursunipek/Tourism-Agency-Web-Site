@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Tourism_Agency_AspNet_Web_Api.Models
 {
@@ -18,6 +19,7 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
         public decimal Price { get; set; }
 
         [Required]
+        [JsonIgnore]
         public TourItem TourItem { get; set; }
         public Guid TourItemId { get; set; }
     }

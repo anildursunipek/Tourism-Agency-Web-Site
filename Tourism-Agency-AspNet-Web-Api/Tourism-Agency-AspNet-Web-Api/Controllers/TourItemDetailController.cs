@@ -29,15 +29,19 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddTourItemDetail([FromBody] TourItemDetailDto tourItemDetailDtoRequest)
         {
+            tourItemDetailDtoRequest.Id = Guid.NewGuid();
+            var tourItemId = tourItemDetailDtoRequest.TourItemId;
+
             if (tourItemDetailDtoRequest == null)
                 return BadRequest(ModelState);
 
-            var tourItemDetail = await _tourismAgencyDbContext.TourItemDetail
-                .Where(t => t.Id == tourItemDetailDtoRequest.Id)
+            var tourItemDetail = await _tourismAgencyDbContext.TourItemDetail.Where(
+                t => (t.TourItemId == tourItemDetailDtoRequest.TourItemId))
                 .FirstOrDefaultAsync();
+
             if (tourItemDetail != null)
             {
-                ModelState.AddModelError("", "This tour item detail already exists.");
+                ModelState.AddModelError("", "Tour item already exists.");
                 return StatusCode(422, ModelState);
             }
 
@@ -45,6 +49,14 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
                 return BadRequest(ModelState);
 
             var tourItemDetailMap = _mapper.Map<TourItemDetail>(tourItemDetailDtoRequest);
+            var tourItem = await _tourismAgencyDbContext.TourItems.Where(t => t.Id == tourItemId).FirstOrDefaultAsync();
+            tourItemDetailMap.TourItem = tourItem;
+
+            if (tourItemDetailMap.TourItem == null)
+            {
+                return NotFound();
+            }
+
             await _tourismAgencyDbContext.AddAsync(tourItemDetailMap);
             await _tourismAgencyDbContext.SaveChangesAsync();
             return Ok(tourItemDetailMap);
@@ -60,29 +72,6 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
                 return NotFound();
 
             return base.Ok(_mapper.Map<TourDto>(tourItemDetail));
-        }
-
-        [HttpPut]
-        [Route("{id:Guid}")]
-        public async Task<IActionResult> updateTourItemDetail([FromRoute] Guid id, [FromBody] TourItemDetailDto updateTourItemDetailRequest)
-        {
-            if (updateTourItemDetailRequest == null)
-                return BadRequest(ModelState);
-
-            if (id != updateTourItemDetailRequest.Id)
-                return BadRequest(ModelState);
-
-            if (!await _tourismAgencyDbContext.TourItemDetail.AnyAsync(t => t.Id == id))
-                return NotFound();
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-
-            var tourItemDetail = _mapper.Map<TourItemDetail>(updateTourItemDetailRequest);
-            _tourismAgencyDbContext.Update(tourItemDetail);
-            await _tourismAgencyDbContext.SaveChangesAsync();
-            return Ok(tourItemDetail);
         }
 
         [HttpDelete]

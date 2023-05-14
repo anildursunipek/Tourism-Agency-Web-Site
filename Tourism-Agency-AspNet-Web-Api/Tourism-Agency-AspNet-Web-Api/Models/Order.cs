@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Tourism_Agency_AspNet_Web_Api.Models
 {
@@ -24,9 +25,11 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
         public int TotalPerson { get; set; }
 
         [Required]
+        [JsonIgnore]
         public User User { get; set; } // navigation property
 
         [Required]
+        [JsonIgnore]
         public TourItem TourItem { get; set; } // navigation property
     }
 }
