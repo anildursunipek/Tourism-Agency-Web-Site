@@ -22,7 +22,7 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
             var tourItem = await _tourismAgencyDbContext.TourItems.ToListAsync();
             return Ok(tourItem);
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> AddTourItem([FromBody] TourItem tourItemRequest)
         {
@@ -58,7 +58,6 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
 
             updateTourItemRequest.Id = updateTourItemRequest.Id;
             updateTourItemRequest.Name = updateTourItemRequest.Name;
-            updateTourItemRequest.TourId = updateTourItemRequest.TourId;
             updateTourItemRequest.Tour = updateTourItemRequest.Tour;
 
 

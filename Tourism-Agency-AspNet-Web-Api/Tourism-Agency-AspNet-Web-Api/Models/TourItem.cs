@@ -12,8 +12,10 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
         public string Name { get; set; }
 
         [Required]
-        [ForeignKey("Tour")]
-        public Guid TourId { get; set; }
         public Tour Tour { get; set; }
+
+        public TourItemDetail TourItemDetail { get; set; }
+
+        public List<Comment> Comments { get; set; }
     }
 }

@@ -6,12 +6,13 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
     public class Tour
     {
         [Required]
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public string categoryId { get; set; }
+        public string CategoryTourId { get; set; }
+        public List<TourItem> TourItems { get; set; }
     }
 }
