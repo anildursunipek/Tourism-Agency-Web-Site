@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Tourism_Agency_AspNet_Web_Api.Data;
+using Tourism_Agency_AspNet_Web_Api.DTO;
 using Tourism_Agency_AspNet_Web_Api.Models;
 
 namespace Tourism_Agency_AspNet_Web_Api.Controllers
@@ -10,64 +12,68 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
     public class UsersController : Controller
     {
         private readonly TourismAgencyDbContext _tourismAgencyDbContext;
-
-        public UsersController(TourismAgencyDbContext tourismAgencyDbContext)
+        private readonly IMapper _mapper;
+        public UsersController(TourismAgencyDbContext tourismAgencyDbContext, IMapper mapper)
         {
             _tourismAgencyDbContext = tourismAgencyDbContext;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _tourismAgencyDbContext.Users.ToListAsync();
-            return Ok(users);
+            return Ok(_mapper.Map<List<UserDto>>(users));
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddEmployee([FromBody] User userRequest)
+        public async Task<IActionResult> AddEmployee([FromBody] UserDto userRequest)
         {
             userRequest.Id = Guid.NewGuid();
-            await _tourismAgencyDbContext.AddAsync(userRequest);
+            if (userRequest == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var userMap = _mapper.Map<User>(userRequest);
+            await _tourismAgencyDbContext.AddAsync(userMap);
             await _tourismAgencyDbContext.SaveChangesAsync();
-            return Ok(userRequest);
+            return Ok(userMap);
         }
 
         [HttpGet]
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetUser([FromRoute] Guid id)
         {
-            var user = await _tourismAgencyDbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+            var user = await _tourismAgencyDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
-            {
                 return NotFound();
-            }
-            return Ok(user);
+
+            return Ok(_mapper.Map<UserDto>(user));
         }
 
         [HttpPut]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> editUser([FromRoute] Guid id, User updateUserRequest)
+        public async Task<IActionResult> updateUser([FromRoute] Guid id, [FromBody] UserDto updateUserDtoRequest)
         {
-            var user = await _tourismAgencyDbContext.Users.FindAsync(id);
+            if (updateUserDtoRequest == null)
+                return BadRequest(ModelState);
 
-            if (user == null)
-            {
+            if (id != updateUserDtoRequest.Id)
+                return BadRequest(ModelState);
+
+            if (!await _tourismAgencyDbContext.Users.AnyAsync(u => u.Id == id))
                 return NotFound();
-            }
 
-            user.Name = updateUserRequest.Name;
-            user.SurName = updateUserRequest.SurName;
-            user.FullName = updateUserRequest.FullName;
-            user.PhoneNumber = updateUserRequest.PhoneNumber;
-            user.Email = updateUserRequest.Email;
-            user.Tc = updateUserRequest.Tc;
-            user.Username = updateUserRequest.Username;
-            user.Password = updateUserRequest.Password;
-            user.UserType = updateUserRequest.UserType;
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+
+            var user = _mapper.Map<User>(updateUserDtoRequest);
+            _tourismAgencyDbContext.Update(user);
             await _tourismAgencyDbContext.SaveChangesAsync();
-
             return Ok(user);
         }
 
@@ -75,15 +81,16 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> deleteUser([FromRoute] Guid id)
         {
-            var user = await _tourismAgencyDbContext.Users.FindAsync(id);
-
-            if (user == null)
-            {
+            if (!await _tourismAgencyDbContext.Users.AnyAsync(u => u.Id == id))
                 return NotFound();
-            }
-            _tourismAgencyDbContext.Remove(user);
+
+            var deleteUser = await _tourismAgencyDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _tourismAgencyDbContext.Remove(deleteUser);
             await _tourismAgencyDbContext.SaveChangesAsync();
-            return Ok(user);
+            return Ok(deleteUser);
         }
     }
 }

@@ -31,6 +31,7 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddTour([FromBody] TourDto tourDtoRequest)
         {
+            tourDtoRequest.Id = Guid.NewGuid();
             if(tourDtoRequest == null)
                 return BadRequest(ModelState);
 
