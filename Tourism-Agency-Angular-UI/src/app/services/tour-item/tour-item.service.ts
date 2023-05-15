@@ -19,7 +19,24 @@ export class TourItemService {
     return this.http.get<TourItem[]>(environment.SERVER_API_URL + "/api/TourItem/"+id)
   }
 
+  getAll() {
+    return this.http.get<TourItem[]>(environment.SERVER_API_URL + "/api/TourItem")
+  }
+
   deleteTourItem(id: string) {
     return this.http.delete<boolean>(environment.SERVER_API_URL + "/api/TourItem/" + id)
+  }
+
+  getMaximum(){
+    return this.http.get<TourItem>(environment.SERVER_API_URL + "/api/TourItem/maximum")
+  }
+  getMinimum(){
+    return this.http.get<TourItem>(environment.SERVER_API_URL + "/api/TourItem/minimum")
+  }
+  getInorder(){
+    return this.http.get<TourItem[]>(environment.SERVER_API_URL + "/api/TourItem/inorder")
+  }
+  getPrice(value:number){
+    return this.http.get<TourItem>(environment.SERVER_API_URL + "/api/TourItem/" + value)
   }
 }

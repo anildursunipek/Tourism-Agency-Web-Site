@@ -1,0 +1,30 @@
+<div class="grid">
+    <div class="col-12 flex" style="justify-content: space-between;">
+        <button pButton pRipple type="button" label="Maximum" class="p-button-raised mr-2 mb-2" (click)="getMaximum()"
+        ></button>
+        <button pButton pRipple type="button" label="Minimum" class="p-button-raised mr-2 mb-2" (click)="getMinimum()"
+        ></button>
+        <button pButton pRipple type="button" label="Inorder" class="p-button-raised mr-2 mb-2" (click)="getInorder()"
+        ></button>
+
+        <div>
+            <p-inputNumber inputId="inputnumber" [(ngModel)]="value" min="0"></p-inputNumber>
+
+            <button pButton pRipple type="button" label="Fiyata Göre Ara" class="p-button-raised ml-2 mb-2" (click)="getPrice()"
+            ></button>
+        </div>
+    </div>
+    <div class="col-3" *ngFor="let tourItem of tourItems">
+        <p-card [header]="tourItem.name" [subheader]="tourItem.tourItemDetail.address" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" [src]="tourItem.imageUrls[0].thumbnailImageSrc">
+            </ng-template>
+            <hr>
+            <div class="flex align-items-center justify-content-between">
+                <span style="font-weight: 600; font-size:25px; color: red;">
+                    {{tourItem.tourItemDetail.price|number: '1.2-2'}} ₺
+                </span>
+            </div>
+        </p-card>
+    </div>
+</div>

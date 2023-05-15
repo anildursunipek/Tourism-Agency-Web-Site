@@ -21,6 +21,219 @@ export class TourItemComponent implements OnInit {
 
   deleteTourItem: TourItem = new TourItem();
 
+  tourItemImages: any[] =
+    [
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/nov.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr10678637157356579141847.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr10678637157357896729323.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr10678637157357944706177.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr10678637157358124260946.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/02/tsr06248635965869045376662.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/02/tsr06248635965869033364641.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/02/tsr06248635965869058792685.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/02/tsr06248635965869037264647.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/02/tsr06248635965869131332813.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/12/Miarosa-Konakli-Garden-Genel-320277.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/12/Miarosa-Konakli-Garden-Genel-320276.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/12/Miarosa-Konakli-Garden-Genel-320276.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/12/Miarosa-Konakli-Garden-Genel-320278.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/12/Miarosa-Konakli-Garden-Genel-315020.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/tsr05941637511632455658248.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/tsr05941637511632797261212.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/tsr05941637511631853999007.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/tsr05941637511632840824303.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/tsr05941637511633169298701-1024x683.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/03/tsr01585637429569133202014.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/03/tsr01585637429567903123324.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/03/tsr01585637429568310698803-1024x683.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/03/tsr01585637429566599014207.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/03/tsr01585637429568583938750.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/04/5302020125544-.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/04/02072020115316-.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/04/5302020125543-.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/04/02072020115333-.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/04/05302020125517-.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/sapanca-4.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/Sapanca-golu.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/1_Ormanya.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/sapanca-3.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/sapanca-1.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/2406_b.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/2404_b.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/2403_b.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/2405_b-1.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/2494_b.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/08/02272021051800.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/08/02272021051720.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/08/02272021051742.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/08/02272021051752.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/08/02272021051834.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/09/yedigoller-1.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/09/yedigoller-4.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/09/yedigoller-3.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/09/yedigoller-2.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/The-Arkin-Iskele-Genel-348326.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/The-Arkin-Iskele-Genel-348324.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/The-Arkin-Iskele-Genel-346820.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/The-Arkin-Iskele-Genel-348321.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/The-Arkin-Iskele-Yeme-Icme-348873.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/Concorde-Tower-Casino-Convention-Spa-Genel-323941-1024x616.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/Concorde-Tower-Casino-Convention-Spa-Yeme-Icme-323980.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/Concorde-Tower-Casino-Convention-Spa-Yeme-Icme-323957.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/Concorde-Tower-Casino-Convention-Spa-Yeme-Icme-323981.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/Concorde-Tower-Casino-Convention-Spa-Oda-324021.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr00223636960347612242891-1024x683.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr00223636960347582223096.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr00223636960347580660025.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr00223636960347596841643.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr00223636960347584736587.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/lords-palace-hotel-spa-casino_292467.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/lords-palace-hotel-spa-casino_292472.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/lords-palace-hotel-spa-casino_292483.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/lords-palace-hotel-spa-casino_292502.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/02/lords-palace-hotel-spa-casino_437947.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/cratos-premium-hotel_242817.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/cratos-premium-hotel_242867.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/cratos-premium-hotel_242809.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/cratos-premium-hotel_242878.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/cratos-premium-hotel_242821.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/richmond-nua-wellness-spa-sapanca_297594.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/richmond-nua-wellness-spa-sapanca_205479.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/richmond-nua-wellness-spa-sapanca_205501.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/richmond-nua-wellness-spa-sapanca_205489.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/richmond-nua-wellness-spa-sapanca_205494.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/midas-hotel-haymana-termal-spa_155048.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/midas-hotel-haymana-termal-spa_155043.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/midas-hotel-haymana-termal-spa_155044.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/midas-hotel-haymana-termal-spa_296689.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/10/midas-hotel-haymana-termal-spa_155047.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/gazelle-resort-spa_313085.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/gazelle-resort-spa_313097.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/gazelle-resort-spa_330419.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/gazelle-resort-spa_313100.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/gazelle-resort-spa_313103.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/13b88ac74c46528f8016445ca442a11c.png" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/m486mbsxlatmffiakjx9.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/lvevxmwhgcyjga27ueoj.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/a93d956464a20362da3efd6dc426d2d0.png" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/q3fwho58pjjtzvqfqsgk.jpg" },
+      ],
+      [
+        { thumbnailImageSrAc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/GS-Genel-1024x638.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/NG-Sapanca-Wellness-Convention-Aktivite-104787.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/farina-restoran.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/NG-Sapanca-Wellness-Convention-Genel-120742.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/NG-Sapanca-Oda-319474.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr23789638041043827574677.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr23789638041043823355790.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr23789638041043831196760.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr23789638041043829932768.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr23789638041043822418484-1.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr26178638070444764940815.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr26178638070444787281415.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr26178638070444770017896.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr26178638070444774461654.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/03/tsr26178638070444771180038.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/ohrid-5-16.09.2019105403-3-b0-1.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/bitola-manastir-2-16.09.2019110649-49-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/elbasan-4-3.10.2019143326-26-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/struga-4-3.10.2019142631-31-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/uskup-9-14.09.2019112952-52-b0.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/belgrad-1-13.09.2019110735-35-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/belgrad-4-13.09.2019110737-37-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/budva-3-14.09.2019113509-9-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/mostar-8-14.09.2019112828-28-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2023/01/novi-sad-2-18.09.2019171235-35-b0.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/06/bastan-sona-balkanlar-turu-12692-20-08.11.2018172815-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/06/bastan-sona-balkanlar-turu-12692-18-08.11.2018172804-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/06/bastan-sona-balkanlar-turu-12692-14-08.11.2018172744-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/06/bastan-sona-balkanlar-turu-12692-12-08.11.2018172731-b0.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/06/bastan-sona-balkanlar-turu-12692-6-08.11.2018172701-b0-1024x770.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/317730.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/317731.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/317715.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/317718.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/317729.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/314002.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/313991.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/314026.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/313996.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2021/12/313997.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/09/tsr14776637776705827191272-1024x683.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/09/tsr14776637776705831254814-1024x683.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/09/tsr14776637776705837580764-1024x683.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/09/tsr14776637776705829222534-1024x683.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/09/tsr14776637776705832660795-1024x683.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/11/6384_b.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/11/6381_b.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/11/6397_b.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/11/6402_b.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/11/6408_b.jpg" },
+      ],
+      [
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/04/titan-select-hotel.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/04/rio.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/04/amelia-beach.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/orange-county-resort-alanya_3060.jpg" },
+        { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/04/transatlantik.jpg" },
+      ],
+    ]
+
   constructor(
     private messageService: MessageService,
     private tourItemService: TourItemService,
@@ -33,7 +246,12 @@ export class TourItemComponent implements OnInit {
 
   changeTour() {
     this.tourItemService.findByTourId(this.tourItem.tour.id).subscribe(res => {
-      this.tourItems = res;
+        res.forEach(r => {
+            r.imageUrls = this.tourItemImages[Math.floor(Math.random() * 30)]
+        })
+        this.tourItems = res;
+        console.log(this.tourItems);
+
     })
   }
 

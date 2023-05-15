@@ -1,76 +1,67 @@
 ﻿namespace Tourism_Agency_AspNet_Web_Api.DataStructures
 {
+    public class CityDto
+    {
+        public double Latitute { get; set; }
+        public double Longitude { get; set; }
+        public string name { get; set; }
+        public int dist { get; set; }
+    }
+    public class City
+    {
+        public double Latitude, Longitude;
+        public string name;
+        public int dist;
+        public City(double lat, double lng, string name, int dist)
+        {
+            this.Latitude = lat;
+            this.Longitude = lng;
+            this.name = name;
+            this.dist = dist;
+        }
+        public City() { }
+    }
+
     public class Graph
     {
-        int[,] kenar;
-        int boyut;
-        public Graph(int boyut)
+
+        int[,] edge;
+        int dim;
+        public Graph(int dim)
         {
             int i, j;
-            this.boyut = boyut;
-            kenar = new int[boyut, boyut];
-            for (i = 0; i < boyut; i++)
+            this.dim = dim;
+            edge = new int[dim, dim];
+            for (i = 0; i < dim; i++)
             {
-                for (j = 0; j < boyut; j++)
+                for (j = 0; j < dim; j++)
                 {
-                    kenar[i, j] = 0;
+                    edge[i, j] = 0;
                 }
             }
         }
-        public void kenarekle(int baslangic, int bitis, int agirlik)
+        public void AddEdge(int start, int end, int weight)
         {
-            kenar[baslangic, bitis] = agirlik;
-        }
-        public void yaz()
-        {
-
-            string[] sehirler = { "izmir", "bursa", "mus", "istanbul", "antalya", "ordu" };
-
-            int i = 0;
-            for (int j = 1; j < 7; j++)
-            {
-                Console.WriteLine(sehirler[j - 1] + " " + kenar[i, j] + " km");
-            }
+            edge[start, end] = weight;
 
         }
-        public void kucukBul()
+        public City FindMin()
         {
-            int min = kenar[0, 1];
+            int min = edge[0, 1];
+            City city = new City();
 
-            string[] sehirler = { "izmir", "bursa", "mus", "istanbul", "antalya", "ordu" };
-            string minsehir = "";
+            City[] cities = { new City(38.42, 27.14, "İzmir", 589), new City(40.19, 29.05, "Bursa", 380), new City(38.74, 41.05, "Muş", 1027), new City(41.00, 28.97, "İstanbul", 444), new City(36.89, 30.71, "Antalya", 476), new City(40.79, 37.38, "Ordu", 560) };
 
             for (int j = 1; j < 6; j++)
             {
-                if (min > kenar[0, j + 1])
+                if (min > edge[0, j + 1])
                 {
-                    min = kenar[0, j + 1];
-                    minsehir = sehirler[j];
+                    min = edge[0, j + 1];
+                    city = cities[j];
                 }
-
             }
-            Console.WriteLine(minsehir + " " + min + " km");
-        }
-    }
 
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            Graph Graf = new Graph(7);
-            Graf.kenarekle(0, 0, 0);//ankara
-            Graf.kenarekle(0, 1, 589);//izmir
-            Graf.kenarekle(0, 2, 380);//bursa
-            Graf.kenarekle(0, 3, 1027);//mus
-            Graf.kenarekle(0, 4, 444);//istanbul
-            Graf.kenarekle(0, 5, 476);//antalya
-            Graf.kenarekle(0, 6, 560);//ordu
-
-            Graf.yaz();
-
-            Graf.kucukBul();
-
-            Console.ReadKey();
+            return city;
         }
     }
 }

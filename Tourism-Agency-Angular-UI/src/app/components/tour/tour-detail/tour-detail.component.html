@@ -7,7 +7,7 @@
         <div class="grid">
             <div class="col-12">
                 <p-card style="text-align: -webkit-center;">
-                    <p-galleria [value]="['https://img.piri.net/piri/upload/3/2023/3/2/7345e04d-9iazrxjpl75n8m0r8g9dim.jpeg']" [responsiveOptions]="galleriaResponsiveOptions"
+                    <p-galleria [value]="tourItem.imageUrls" [responsiveOptions]="galleriaResponsiveOptions"
                         [containerStyle]="{'max-width': '800px'}" [numVisible]="6" [circular]="true">
                         <ng-template pTemplate="item" let-item>
                             <img [src]="item.thumbnailImageSrc" style="width: 100%; display: block;" />
@@ -85,11 +85,11 @@
                     <div class="col-12">
                         <h2>Yorumlar</h2>
                     </div>
-                    <div class="col-2">
-                        <p-avatar [label]="'BA'" styleClass="mr-2" size="large"
+                    <div class="col-4">
+                        <p-avatar [label]="user.name[0] + 'A'" styleClass="mr-2" size="large"
                             shape="circle"></p-avatar>
                     </div>
-                    <div class="col-10 p-formgrid">
+                    <div class="col-8 p-formgrid">
                         <div class="field">
                             <textarea rows="5" pInputTextarea autoResize="autoResize" placeholder="Açıklama"
                                 [(ngModel)]="userComment.description" style="width: 100%;"></textarea>
@@ -101,13 +101,16 @@
                     </div>
                     <div class="col-12">
                         <div class="grid" *ngFor="let comment of comments">
-                            <div class="col-2">
-                                <p-avatar [label]="'BA'" styleClass="mr-2"
+                            <div class="col-4">
+                                <i class="pi pi-star mr-1" style="font-size: 2rem" *ngIf="comment.user.userType == 'VIP'"></i>
+                                <p-avatar [label]="comment.user.name[0] + comment.user.surName[0]" styleClass="mr-2"
                                     size="large" shape="circle"></p-avatar>
+                                    <div>{{comment.user.fullName}}</div>
                             </div>
-                            <div class="col-10">
+                            <div class="col-8">
                                 {{comment.description}}
                             </div>
+                            
                         </div>
                     </div>
 

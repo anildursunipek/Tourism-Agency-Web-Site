@@ -49,14 +49,13 @@
                     <p-button label="X" styleClass="p-button-danger"
                         (click)="deleteTourItemFunction(tourItem)"></p-button>
                 </div>
-                <img alt="Card" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Falezlerden_Antalya_Konyaalt%C4%B1_Plaj%C4%B1na_do%C4%9Fru_bir_g%C3%B6r%C3%BCn%C3%BCm.jpg">
+                <img alt="Card" [src]="tourItem.imageUrls[0].thumbnailImageSrc">
             </ng-template>
             <hr>
             <div class="flex align-items-center justify-content-between">
                 <span style="font-weight: 600; font-size:25px; color: red;">
-                    {{tourItem.tourItemDetail.price|number: '1.2-2'}}₺
+                    {{tourItem.tourItemDetail.price|number: '1.2-2'}} ₺
                 </span>
-                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
             </div>
         </p-card>
     </div>

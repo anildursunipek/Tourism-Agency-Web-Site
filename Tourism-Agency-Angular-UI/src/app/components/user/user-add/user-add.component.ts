@@ -14,6 +14,7 @@ export class UserAddComponent implements OnInit {
 
   user: User = new User();
   submitted: boolean = false;
+  loading:boolean = false;
 
   constructor(
     private userService: UserService,
@@ -39,6 +40,7 @@ export class UserAddComponent implements OnInit {
     this.submitted = true;
     if (this.formControl()) {
       this.submitted = false;
+      this.loading = true;
       if (this.user.id == null) {
         this.user.id = this.convertGuid();
       }
@@ -47,7 +49,11 @@ export class UserAddComponent implements OnInit {
         console.log(res);
         this.user = new User();
         this.myMessageService('success', 'Başarılı', 'Kaydetme işlemi başarılı.');
+      this.loading = false;
+
       }, err => {
+      this.loading = false;
+
         this.user.id = (this.user.id == this.convertGuid() ? null : this.user.id)
 
         this.myMessageService('error', 'Hata', 'Kaydedilirken bir hata meydana geldi.');

@@ -275,7 +275,10 @@ export class DashboardComponent implements OnInit {
 
   findByTourId(id: string) {
     this.tourItemService.findByTourId(id).subscribe(res => {
-      this.tourItems = res;
+        res.forEach(r => {
+            r.imageUrls = this.tourItemImages[Math.floor(Math.random() * 30)]
+        })
+        this.tourItems = res;
       if (res.length != 0) {
         this.name = res[0].tour.name
       }
@@ -283,39 +286,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllTour() {
-
-    // let tours: Tour[] = new Array();
-    // for (let i = 0; i < 10; i++) {
-    //   let tour = new Tour();
-    //   tour.id = i.toString();
-    //   tour.name = "tur " + i;
-
-    //   if (i != 0 && i % 2 == 0) {
-    //     tour.categoryTourId = tours[i % 2].id
-    //   }
-
-    //   tours.push(tour);
-    // }
-    // this.tours = tours;
-
-
-    // let wrapperTours: any[] = new Array();
-    // let toursHead: Tour[] = tours.filter(tour => tour.categoryTourId == null)
-
-    // toursHead.forEach(tourHead => {
-    //   wrapperTours.push({ head: tourHead, children: tours.filter(tour => tour.categoryTourId == tourHead.id) })
-    // })
-    // wrapperTours.forEach(wrapperTour => {
-    //   let childItems: any[] = new Array();
-    //   wrapperTour.children.forEach(child => {
-    //     childItems.push({ label: child.name, routerLink: '/dashboard/' + child.id })
-    //   })
-    //   this.items.push(
-    //     {
-    //       label: wrapperTour.head.name,
-    //       items: childItems
-    //     })
-    // })
     this.items = new Array();
     this.tourService.getAllTour().subscribe(res => {
         console.log(res)

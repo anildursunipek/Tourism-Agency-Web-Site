@@ -31,4 +31,9 @@ export class UserService {
   login(login:Login){
     return this.http.post<User>("giriş url",login)
   }
+
+  priority(){
+    return this.http.get<User[]>(this.baseApiUrl + "/api/Users/priority")
+
+  }
 }

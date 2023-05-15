@@ -9,6 +9,8 @@
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <button pButton pRipple label="Yeni" icon="pi pi-plus" class="p-button-success mr-2"
                             [routerLink]="'/component/user/add'"></button>
+                        <button pButton pRipple label="Kullanıcı tipine göre getir" icon="pi pi-plus" class="p-button-secondary mr-2"
+                           (click)="priority()"></button>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"

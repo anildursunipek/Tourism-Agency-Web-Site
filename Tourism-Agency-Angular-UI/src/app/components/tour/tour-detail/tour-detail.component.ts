@@ -57,6 +57,8 @@ export class TourDetailComponent implements OnInit {
   getCommentsByTourItemId(id: string) {
     this.commentService.findByTourItemId(id).subscribe(res => {
       this.comments = res;
+      console.log(res);
+
     })
   }
 
