@@ -11,7 +11,8 @@ namespace Tourism_Agency_AspNet_Web_Api.DTO
         public int TourTime { get; set; }
         public int Adult { get; set; }
         public int Child { get; set; }
-        public int TotalPerson { get; set; }
+        public string PhoneNumber { get; set; }
+        public string FullName { get; set; }
         public Guid UserId { get; set; }
         public Guid TourItemId { get; set; }
     }

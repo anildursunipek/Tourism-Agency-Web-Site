@@ -77,8 +77,8 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
                 binaryTree.add(tourItemDetail.Price, tourItem);
             }
 
-            TourItemDto binarySearch = _mapper.Map<TourItemDto>((TourItem)binaryTree.search(price, binaryTree.root));
-            return Ok(binarySearch);
+            TourItemDto binarySearchResult = _mapper.Map<TourItemDto>((TourItem)binaryTree.search(price, binaryTree.root));
+            return Ok(binarySearchResult);
         }
 
         [HttpGet]

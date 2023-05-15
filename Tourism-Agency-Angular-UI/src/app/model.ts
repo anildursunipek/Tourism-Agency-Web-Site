@@ -25,6 +25,12 @@ export class Tour {
 export class TourItem {
     id:string;
     name:string = "";
+    imageUrls:any[] = new Array();
+    tour:Tour = new Tour();
+}
+
+export class TourItemDetail {
+    id:string;
     address:string = "";
     price:number;
     shortDescription:string = "";
