@@ -12,10 +12,11 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   saveComment(comment: Comment) {
+    console.log(comment)
     return this.http.post<Comment>(this.baseApiUrl + "/api/Comments", comment)
   }
 
   findByTourItemId(id: string) {
-    return this.http.get<Comment[]>(this.baseApiUrl + "/api/Comments"+ id)
+    return this.http.get<Comment[]>(this.baseApiUrl + "/api/Comments/"+ id)
   }
 }

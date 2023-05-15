@@ -51,6 +51,7 @@ export class TourDetailComponent implements OnInit {
     console.log(this.tourItem);
     this.getCommentsByTourItemId(this.tourItem.id)
     this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user)
   }
 
   getCommentsByTourItemId(id: string) {
@@ -63,6 +64,9 @@ export class TourDetailComponent implements OnInit {
     this.userComment.user = { ...this.user }
     this.userComment.tourItem = { ...this.tourItem };
     if (this.userComment.description.trim()) {
+        this.userComment.id = "00000000-0000-0000-0000-000000000000";
+        this.userComment.userId = this.user.id;
+        this.userComment.tourItemId = this.tourItem.id;
       this.commentService.saveComment(this.userComment).subscribe(res => {
         this.userComment = new Comment();
         this.myMessageService('success', 'Başarılı', 'Yorum yapıldı.');
@@ -85,9 +89,10 @@ export class TourDetailComponent implements OnInit {
       this.order.tourTime != null
     ) {
 
-      if (this.order.id == null) {
         this.order.id = this.convertGuid();
-      }
+        this.order.userId = this.user.id;
+        this.order.tourItemId = this.tourItem.id;
+
       this.orderService.saveOrder(this.order).subscribe(res => {
         this.order = new Order();
         this.myMessageService('success', 'Başarılı', 'Rezervasyon başarılı.');

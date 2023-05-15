@@ -44,10 +44,14 @@ export class Comment {
     description:string = "";
     tourItem:TourItem = new TourItem();
     user:User = new User();
+    userId:string;
+    tourItemId:string;
 }
 
 export class Order{
     id:string;
+    tourItemId:string;
+    userId:string;
     user:User = new User();
     tourItem:TourItem = new TourItem();
     fullName:string = "";

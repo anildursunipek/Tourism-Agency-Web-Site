@@ -316,25 +316,30 @@ export class DashboardComponent implements OnInit {
     //       items: childItems
     //     })
     // })
-
+    this.items = new Array();
     this.tourService.getAllTour().subscribe(res => {
+        console.log(res)
+        let veri:any[] = new Array();
       let wrapperTours: any[] = new Array();
+
       let toursHead: Tour[] = res.filter(tour => tour.categoryTourId == "")
 
       toursHead.forEach(tourHead => {
         wrapperTours.push({ head: tourHead, children: res.filter(tour => tour.categoryTourId == tourHead.id) })
       })
+
       wrapperTours.forEach(wrapperTour => {
         let childItems: any[] = new Array();
         wrapperTour.children.forEach(child => {
-          childItems.push({ label: child.name, routerLink: 'dashboard/' + child.id })
+          childItems.push({ label: child.name, routerLink: '/dashboard/' + child.id })
         })
-        this.items.push(
+        veri.push(
           {
             label: wrapperTour.head.name,
             items: childItems
           })
       })
+      this.items = veri;
     })
   }
 

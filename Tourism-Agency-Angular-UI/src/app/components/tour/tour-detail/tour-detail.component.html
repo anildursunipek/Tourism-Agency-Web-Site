@@ -7,7 +7,7 @@
         <div class="grid">
             <div class="col-12">
                 <p-card style="text-align: -webkit-center;">
-                    <p-galleria [value]="tourItem.imageUrls" [responsiveOptions]="galleriaResponsiveOptions"
+                    <p-galleria [value]="['https://img.piri.net/piri/upload/3/2023/3/2/7345e04d-9iazrxjpl75n8m0r8g9dim.jpeg']" [responsiveOptions]="galleriaResponsiveOptions"
                         [containerStyle]="{'max-width': '800px'}" [numVisible]="6" [circular]="true">
                         <ng-template pTemplate="item" let-item>
                             <img [src]="item.thumbnailImageSrc" style="width: 100%; display: block;" />
@@ -86,7 +86,7 @@
                         <h2>Yorumlar</h2>
                     </div>
                     <div class="col-2">
-                        <p-avatar [label]="user.name[0]+user.surname[0]" styleClass="mr-2" size="large"
+                        <p-avatar [label]="'BA'" styleClass="mr-2" size="large"
                             shape="circle"></p-avatar>
                     </div>
                     <div class="col-10 p-formgrid">
@@ -102,7 +102,7 @@
                     <div class="col-12">
                         <div class="grid" *ngFor="let comment of comments">
                             <div class="col-2">
-                                <p-avatar [label]="comment.user.name[0]+comment.user.surname[0]" styleClass="mr-2"
+                                <p-avatar [label]="'BA'" styleClass="mr-2"
                                     size="large" shape="circle"></p-avatar>
                             </div>
                             <div class="col-10">
