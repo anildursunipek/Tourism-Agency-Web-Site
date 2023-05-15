@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  SERVER_API_URL: "localhost:8080/private-managment-api"
+  SERVER_API_URL: 'http://localhost:5171'
 };
 
 /*

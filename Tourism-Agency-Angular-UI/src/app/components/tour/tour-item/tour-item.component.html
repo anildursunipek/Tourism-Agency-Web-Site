@@ -16,23 +16,23 @@
         </div>
         <div class="field col-3" *ngIf="tourItem.tour.id">
             <label htmlFor="name2">Adres</label>
-            <input pInputText id="name2" placeholder="Adres" type="text" [(ngModel)]="tourItem.address" />
+            <input pInputText id="name2" placeholder="Adres" type="text" [(ngModel)]="tourItem.tourItemDetail.address" />
         </div>
         <div class="field col-3" *ngIf="tourItem.tour.id">
             <label htmlFor="name2">Fiyat</label>
-            <p-inputNumber [(ngModel)]="tourItem.price" inputId="currency-tr" mode="currency" currency="TRY"
+            <p-inputNumber [(ngModel)]="tourItem.tourItemDetail.price" inputId="currency-tr" mode="currency" currency="TRY"
                 locale="en-TR">
             </p-inputNumber>
         </div>
         <div class="field col-12" *ngIf="tourItem.tour.id">
             <label htmlFor="name2">Kısa açıklama</label>
             <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" placeholder="Açıklama"
-                [(ngModel)]="tourItem.shortDescription"></textarea>
+                [(ngModel)]="tourItem.tourItemDetail.shortDescription"></textarea>
         </div>
         <div class="field col-12" *ngIf="tourItem.tour.id">
             <label htmlFor="name2">Uzun açıklama</label>
             <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" placeholder="Açıklama"
-                [(ngModel)]="tourItem.longDescription"></textarea>
+                [(ngModel)]="tourItem.tourItemDetail.longDescription"></textarea>
         </div>
 
         <div class="field col-12" *ngIf="tourItem.tour.id">
@@ -43,18 +43,18 @@
 </div>
 <div class="grid">
     <div class="col-3" *ngFor="let tourItem of tourItems">
-        <p-card [header]="tourItem.name" [subheader]="tourItem.address" styleClass="p-card-shadow">
+        <p-card [header]="tourItem.name" [subheader]="tourItem.tourItemDetail.address" styleClass="p-card-shadow">
             <ng-template pTemplate="header">
                 <div style="text-align: right;">
                     <p-button label="X" styleClass="p-button-danger"
                         (click)="deleteTourItemFunction(tourItem)"></p-button>
                 </div>
-                <img alt="Card" [src]="tourItem.imageUrls[0]">
+                <img alt="Card" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Falezlerden_Antalya_Konyaalt%C4%B1_Plaj%C4%B1na_do%C4%9Fru_bir_g%C3%B6r%C3%BCn%C3%BCm.jpg">
             </ng-template>
             <hr>
             <div class="flex align-items-center justify-content-between">
                 <span style="font-weight: 600; font-size:25px; color: red;">
-                    {{tourItem.price|number: '1.2-2'}}₺
+                    {{tourItem.tourItemDetail.price|number: '1.2-2'}}₺
                 </span>
                 <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
             </div>

@@ -102,18 +102,20 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
 
         [HttpGet]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> GetTourItemById([FromRoute] Guid id)
+        public async Task<IActionResult> GetAllTourItemById([FromRoute] Guid id)
         {
-            var tourItem = await _tourismAgencyDbContext.TourItems.FirstOrDefaultAsync(t => t.Id == id);
-            var tourItemMap = _mapper.Map<TourItemDto>(tourItem);
+            var tourItem = await _tourismAgencyDbContext.TourItems.Where(t => t.TourId == id).ToListAsync();
+            var tourItemMap = _mapper.Map<List<TourItemDto>>(tourItem);
             if (tourItem == null)
-                return NotFound();
+                return Ok(null);
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            tourItemMap.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == tourItemMap.TourId));
-            tourItemMap.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == tourItemMap.Id));
-
+            foreach(var item in tourItemMap)
+            {
+                item.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == item.TourId));
+                item.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == item.Id));
+            }
             return Ok(tourItemMap);
         }
 

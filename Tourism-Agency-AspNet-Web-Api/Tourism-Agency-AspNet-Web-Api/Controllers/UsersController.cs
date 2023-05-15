@@ -108,7 +108,7 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:Guid}")]
+        [Route("delete/{id:Guid}")]
         public async Task<IActionResult> deleteUser([FromRoute] Guid id)
         {
             if (!await _tourismAgencyDbContext.Users.AnyAsync(u => u.Id == id))

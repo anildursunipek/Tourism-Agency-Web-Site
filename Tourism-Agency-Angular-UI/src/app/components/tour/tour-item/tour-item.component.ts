@@ -39,6 +39,7 @@ export class TourItemComponent implements OnInit {
 
   saveTourItem() {
     this.submitted = true;
+    console.log(this.tourItem);
     if (this.tourItem.name.trim() && this.tourItem.tourItemDetail.address.trim() && this.tourItem.tourItemDetail.price > 0 && this.tourItem.tourItemDetail.longDescription.trim() && this.tourItem.tourItemDetail.shortDescription.trim()) {
       this.submitted = false;
       if (this.tourItem.id == null) {

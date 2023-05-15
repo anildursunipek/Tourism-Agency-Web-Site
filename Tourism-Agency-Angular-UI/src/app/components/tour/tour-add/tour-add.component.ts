@@ -34,6 +34,9 @@ export class TourAddComponent implements OnInit {
       if (this.tour.id == null) {
         this.tour.id = this.convertGuid();
       }
+      if(this.tour.categoryTourId == null){
+        this.tour.categoryTourId = "";
+      }
       this.tourService.saveTour(this.tour).subscribe(res => {
         this.tour = new Tour();
         this.myMessageService('success', 'Başarılı', 'Kaydetme işlemi başarılı.');
