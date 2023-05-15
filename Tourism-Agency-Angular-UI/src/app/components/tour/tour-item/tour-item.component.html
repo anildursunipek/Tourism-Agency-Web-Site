@@ -60,43 +60,6 @@
             </div>
         </p-card>
     </div>
-    <div class="col-3">
-        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
-            <ng-template pTemplate="header">
-                <div style="text-align: right;">
-                    <p-button label="X" styleClass="p-button-danger"
-                        (click)="deleteTourItemFunction(tourItem)"></p-button>
-                </div>
-                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
-            </ng-template>
-            <hr>
-            <div class="flex align-items-center justify-content-between">
-                <span style="font-weight: 600; font-size:25px; color: red;">
-                    300 ₺
-                </span>
-                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
-            </div>
-        </p-card>
-
-    </div>
-    <div class="col-3">
-        <p-card header="Noxinn Club Hotel" subheader="Konaklı- Alanya Konaklı- Alanya" styleClass="p-card-shadow">
-            <ng-template pTemplate="header">
-                <div style="text-align: right;">
-                    <p-button label="X" styleClass="p-button-danger"
-                        (click)="deleteTourItemFunction(tourItem)"></p-button>
-                </div>
-                <img alt="Card" src="https://eksenturizm.com.tr/wp-content/uploads/2023/03/noxinn.jpg">
-            </ng-template>
-            <hr>
-            <div class="flex align-items-center justify-content-between">
-                <span style="font-weight: 600; font-size:25px; color: red;">
-                    300 ₺
-                </span>
-                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
-            </div>
-        </p-card>
-    </div>
 </div>
 
 <p-dialog [(visible)]="deleteTourItemDialog" header="Onaylama" [modal]="true" [style]="{width:'450px'}">
@@ -110,15 +73,3 @@
         <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
     </ng-template>
 </p-dialog>
-<!-- <p-card [header]="tourItem.name" [subheader]="tourItem.address" styleClass="p-card-shadow">
-            <ng-template pTemplate="header">
-                <img alt="Card" [src]="tourItem.imageUrls[0]">
-            </ng-template>
-            <hr>
-            <div class="flex align-items-center justify-content-between">
-                <span style="font-weight: 600; font-size:25px; color: red;">
-                    {{tourItem.price|number: '1.2-2'}}₺
-                </span>
-                <p-button label="Details" icon="pi pi-angle-right" styleClass="p-button-secondary"></p-button>
-            </div>
-        </p-card> -->

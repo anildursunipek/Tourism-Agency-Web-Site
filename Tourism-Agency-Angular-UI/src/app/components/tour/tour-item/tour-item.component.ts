@@ -39,34 +39,34 @@ export class TourItemComponent implements OnInit {
 
   saveTourItem() {
     this.submitted = true;
-    if (this.tourItem.name.trim() && this.tourItem.address.trim() && this.tourItem.price > 0 && this.tourItem.longDescription.trim() && this.tourItem.shortDescription.trim()) {
+    if (this.tourItem.name.trim() && this.tourItem.tourItemDetail.address.trim() && this.tourItem.tourItemDetail.price > 0 && this.tourItem.tourItemDetail.longDescription.trim() && this.tourItem.tourItemDetail.shortDescription.trim()) {
       this.submitted = false;
+      if (this.tourItem.id == null) {
+        this.tourItem.id = this.convertGuid();
+        this.tourItem.tourItemDetail.id = this.convertGuid();
+      }
+      this.tourItem.tourId = this.tourItem.tour.id;
       this.tourItemService.saveTourItem(this.tourItem).subscribe(res => {
         this.tourItem = new TourItem();
         this.myMessageService('success', 'Başarılı', 'Kaydetme işlemi başarılı.');
         this.getAllTour()
       }, err => {
+        if (this.tourItem.id == this.convertGuid()) {
+          this.tourItem.id = null;
+          this.tourItem.tourItemDetail.id = null;
+        }
+
         this.myMessageService('error', 'Hata', 'Kaydedilirken bir hata meydana geldi.');
       })
     } else {
       this.myMessageService('warn', 'Uyarı', 'Gerekli alanları doldurunuz.');
     }
   }
+  convertGuid() {
+    return "00000000-0000-0000-0000-000000000000";
+  }
 
   getAllTour() {
-    // dumy veri silinecek
-    for (let i = 0; i < 10; i++) {
-      let tour = new Tour();
-      tour.id = i.toString();
-      tour.name = "tur " + i;
-
-      if (i != 0 && i % 2 == 0) {
-        tour.categoryTourId = this.tours[i % 2].id
-      }
-
-      this.tours.push(tour);
-    }
-    // dumy veri silinecek
     this.tourService.getAllTour().subscribe(res => {
       this.tours = res;
     })
@@ -90,7 +90,6 @@ export class TourItemComponent implements OnInit {
       this.deleteTourItemDialog = false;
     })
   }
-
 
   myMessageService(severity: string, summary: string, detail: string) {
     this.messageService.add({ severity: severity, summary: summary, detail: detail });

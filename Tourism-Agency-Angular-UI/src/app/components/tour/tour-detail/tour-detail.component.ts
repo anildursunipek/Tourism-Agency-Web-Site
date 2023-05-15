@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Comment, Order, TourItem, User } from 'src/app/model';
 import { CommentService } from 'src/app/services/comment/comment.service';
@@ -17,8 +17,10 @@ export class TourDetailComponent implements OnInit {
 
   userComment: Comment = new Comment();
   order: Order = new Order()
-  comments:Comment[] = new Array();
-  user:User = new User();
+  comments: Comment[] = new Array();
+  user: User = new User();
+
+  @Output() goBack = new EventEmitter<boolean>();
 
   galleriaResponsiveOptions: any[] = [
     {
@@ -51,14 +53,14 @@ export class TourDetailComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
   }
 
-  getCommentsByTourItemId(id:string){
+  getCommentsByTourItemId(id: string) {
     this.commentService.findByTourItemId(id).subscribe(res => {
       this.comments = res;
     })
   }
 
   sendComment() {
-    this.userComment.user = {...this.user}
+    this.userComment.user = { ...this.user }
     this.userComment.tourItem = { ...this.tourItem };
     if (this.userComment.description.trim()) {
       this.commentService.saveComment(this.userComment).subscribe(res => {
@@ -73,7 +75,7 @@ export class TourDetailComponent implements OnInit {
   }
 
   saveOrder() {
-    this.order.user = {...this.user}
+    this.order.user = { ...this.user }
     this.order.tourItem = { ...this.tourItem };
     if (
       this.order.fullName.trim() &&
@@ -82,10 +84,17 @@ export class TourDetailComponent implements OnInit {
       this.order.child != null &&
       this.order.tourTime != null
     ) {
+
+      if (this.order.id == null) {
+        this.order.id = this.convertGuid();
+      }
       this.orderService.saveOrder(this.order).subscribe(res => {
         this.order = new Order();
         this.myMessageService('success', 'Başarılı', 'Rezervasyon başarılı.');
       }, err => {
+        if (this.order.id == this.convertGuid()) {
+          this.order.id = null;
+        }
         this.myMessageService('error', 'Hata', 'Rezervasyon yaparken bir hata meydana geldi.');
       })
     } else {
@@ -93,7 +102,14 @@ export class TourDetailComponent implements OnInit {
     }
   }
 
+  convertGuid() {
+    return "00000000-0000-0000-0000-000000000000";
+  }
+
   myMessageService(severity: string, summary: string, detail: string) {
     this.messageService.add({ severity: severity, summary: summary, detail: detail });
+  }
+  back() {
+    this.goBack.emit(true);
   }
 }

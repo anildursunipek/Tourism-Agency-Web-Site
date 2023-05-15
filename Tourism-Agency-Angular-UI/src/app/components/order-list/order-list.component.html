@@ -24,6 +24,7 @@
                         <th>Yetişkin</th>
                         <th>Çocuk</th>
                         <th>Tarih</th>
+                        <th>Fiyat</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-order>
@@ -35,6 +36,7 @@
                         <td>{{order.adult}}</td>
                         <td>{{order.child}}</td>
                         <td>{{order.date|date:'dd/MM/yyyy'}}</td>
+                        <td>{{order.tourItem.tourItemDetail.price|number:'1.2-2'}} TL</td>
                     </tr>
                 </ng-template>
             </p-table>

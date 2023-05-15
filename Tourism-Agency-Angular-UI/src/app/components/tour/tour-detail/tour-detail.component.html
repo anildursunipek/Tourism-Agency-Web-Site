@@ -1,6 +1,7 @@
 <p-toast></p-toast>
+<button pButton pRipple type="button" icon="pi pi-arrow-left" label="Geri" class="p-button-raised mr-2 mb-2" (click)="back()"></button>
 <h1>{{tourItem.name}}</h1>
-<h4><i class="pi pi-map-marker"></i> {{tourItem.address}}</h4>
+<h4><i class="pi pi-map-marker"></i> {{tourItem.tourItemDetail.address}}</h4>
 <div class="grid">
     <div class="col-8">
         <div class="grid">
@@ -23,14 +24,14 @@
             <div class="col-12">
                 <p-card>
                     <h4>TESİS HAKKINDA</h4>
-                    <div [innerHTML]="tourItem.shortDescription">
+                    <div [innerHTML]="tourItem.tourItemDetail.shortDescription">
                     </div>
                 </p-card>
             </div>
             <div class="col-12">
                 <p-card>
                     <h4>OTEL KONSEPTİ</h4>
-                    <div [innerHTML]="tourItem.longDescription">
+                    <div [innerHTML]="tourItem.tourItemDetail.longDescription">
                     </div>
                 </p-card>
             </div>
@@ -41,7 +42,7 @@
         <div class="col-12 p-fluid">
             <p-card>
                 <h2>{{tourItem.name}}</h2>
-                <h6><i class="pi pi-map-marker"></i> {{tourItem.address}}</h6>
+                <h6><i class="pi pi-map-marker"></i> {{tourItem.tourItemDetail.address}}</h6>
                 <hr>
                 <div class="p-formgrid grid">
                     <div class="field col-6">
@@ -85,7 +86,8 @@
                         <h2>Yorumlar</h2>
                     </div>
                     <div class="col-2">
-                        <p-avatar [label]="user.name[0]+user.surname[0]" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+                        <p-avatar [label]="user.name[0]+user.surname[0]" styleClass="mr-2" size="large"
+                            shape="circle"></p-avatar>
                     </div>
                     <div class="col-10 p-formgrid">
                         <div class="field">

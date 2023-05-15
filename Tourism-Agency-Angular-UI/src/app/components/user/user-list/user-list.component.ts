@@ -25,30 +25,6 @@ export class UserListComponent implements OnInit {
   }
 
   getAllUser() {
-    // dumy veri silinecek
-    var arrFunction = (str: string, count: number): string => {
-      let text = "";
-      for (let i = 0; i < count; i++) {
-        text += str
-      }
-      return text;
-    }
-    for (let i = 0; i < 15; i++) {
-      let user = new User();
-      user.id = i.toString();
-      user.name = "batuhan " + i;
-      user.surname = "arslandas " + i;
-      user.fullName = "batuhan " + i + " " + "arslandas " + i;
-      user.phoneNumber = "arslandas " + i;
-      user.username = "username " + i;
-      user.password = "password " + i;
-      user.email = arrFunction(i.toString(), 6) + "@hotmail.com"
-      user.tc = arrFunction(i.toString(), 11)
-
-      this.users.push(user);
-    }
-    // dumy veri silinecek
-
     this.userService.getAllUser().subscribe(res => {
       this.users = res;
     })

@@ -27,6 +27,8 @@ export class TourItem {
     name:string = "";
     imageUrls:any[] = new Array();
     tour:Tour = new Tour();
+    tourId:string;
+    tourItemDetail:TourItemDetail = new TourItemDetail();
 }
 
 export class TourItemDetail {
@@ -35,8 +37,6 @@ export class TourItemDetail {
     price:number;
     shortDescription:string = "";
     longDescription:string = "";
-    imageUrls:any[] = new Array();
-    tour:Tour = new Tour();
 }
 
 export class Comment {

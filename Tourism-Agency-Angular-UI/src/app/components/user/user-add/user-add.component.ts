@@ -39,12 +39,17 @@ export class UserAddComponent implements OnInit {
     this.submitted = true;
     if (this.formControl()) {
       this.submitted = false;
+      if (this.user.id == null) {
+        this.user.id = this.convertGuid();
+      }
       this.user.fullName = this.user.name.concat(" " + this.user.surname)
       this.userService.saveUser(this.user).subscribe(res => {
         console.log(res);
         this.user = new User();
         this.myMessageService('success', 'Başarılı', 'Kaydetme işlemi başarılı.');
       }, err => {
+        this.user.id = (this.user.id == this.convertGuid() ? null : this.user.id)
+
         this.myMessageService('error', 'Hata', 'Kaydedilirken bir hata meydana geldi.');
       })
     } else {
@@ -54,6 +59,10 @@ export class UserAddComponent implements OnInit {
 
   formControl() {
     return this.user.name.trim() && this.user.surname.trim() && this.user.phoneNumber.trim() && this.user.tc.trim() && this.user.email.trim() && this.user.username && this.user.password;
+  }
+
+  convertGuid() {
+    return "00000000-0000-0000-0000-000000000000";
   }
 
   myMessageService(severity: string, summary: string, detail: string) {

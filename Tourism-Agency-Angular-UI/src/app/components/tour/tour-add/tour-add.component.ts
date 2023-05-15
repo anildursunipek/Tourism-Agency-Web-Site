@@ -31,11 +31,17 @@ export class TourAddComponent implements OnInit {
     this.submitted = true;
     if (this.tour.name.trim()) {
       this.submitted = false;
+      if (this.tour.id == null) {
+        this.tour.id = this.convertGuid();
+      }
       this.tourService.saveTour(this.tour).subscribe(res => {
         this.tour = new Tour();
         this.myMessageService('success', 'Başarılı', 'Kaydetme işlemi başarılı.');
         this.getAllTour()
       }, err => {
+        if (this.tour.id == this.convertGuid()) {
+          this.tour.id = null;
+        }
         this.myMessageService('error', 'Hata', 'Kaydedilirken bir hata meydana geldi.');
       })
     } else {
@@ -43,20 +49,11 @@ export class TourAddComponent implements OnInit {
     }
   }
 
+  convertGuid() {
+    return "00000000-0000-0000-0000-000000000000";
+  }
+
   getAllTour() {
-    // dumy veri silinecek
-    for (let i = 0; i < 10; i++) {
-      let tour = new Tour();
-      tour.id = i.toString();
-      tour.name = "tur " + i;
-
-      if (i != 0 && i % 2 == 0){
-        tour.categoryTourId = this.tours[i % 2].id
-      }
-
-      this.tours.push(tour);
-    }
-    // dumy veri silinecekk
     this.tourService.getAllTour().subscribe(res => {
       this.tours = res;
     })
