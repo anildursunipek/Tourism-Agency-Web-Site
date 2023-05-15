@@ -101,6 +101,30 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         }
 
         [HttpGet]
+        [Route("inorder")]
+        public async Task<IActionResult> GetTourItemByPriceInOrder()
+        {
+            var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
+            var tourItemsMap = _mapper.Map<List<TourItemDto>>(tourItems);
+            foreach (var item in tourItemsMap)
+            {
+                item.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == item.TourId));
+                item.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == item.Id));
+            }
+            BinaryTree binaryTree = new BinaryTree();
+
+            foreach (var tourItem in tourItemsMap)
+            {
+                binaryTree.add(tourItem.TourItemDetail.Price, tourItem);
+            }
+
+            List<TourItemDto> list = new List<TourItemDto>();
+            binaryTree.inorder(list, binaryTree.root);
+            return Ok(list);
+        }
+
+
+        [HttpGet]
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetAllTourItemById([FromRoute] Guid id)
         {

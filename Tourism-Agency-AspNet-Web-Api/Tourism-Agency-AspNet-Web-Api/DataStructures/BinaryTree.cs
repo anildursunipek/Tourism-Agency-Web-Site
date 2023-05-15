@@ -1,4 +1,6 @@
-﻿namespace Tourism_Agency_AspNet_Web_Api.DataStructures
+﻿using Tourism_Agency_AspNet_Web_Api.DTO;
+
+namespace Tourism_Agency_AspNet_Web_Api.DataStructures
 {
     public class BinaryNode
     {
@@ -69,7 +71,21 @@
                     return search(key, node.right);
             }
         }
+        public void inorder(List<TourItemDto> list, BinaryNode node)
+        {
+            // inorder -> LNR
+            if (node == null)
+                return;
 
+            if (node.left != null)
+                inorder(list, node.left);
+
+            //Console.Write(node.key + " | ");
+            list.Add((TourItemDto)node.data);
+
+            if (node.right != null)
+                inorder(list, node.right);
+        }
         public Object GetMin()
         {
             if(this.root == null)
