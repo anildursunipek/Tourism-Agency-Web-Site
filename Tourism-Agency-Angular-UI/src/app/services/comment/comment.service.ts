@@ -7,14 +7,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CommentService {
+    baseApiUrl: string = environment.SERVER_API_URL;
 
   constructor(private http: HttpClient) { }
 
   saveComment(comment: Comment) {
-    return this.http.post<Comment>(environment.SERVER_API_URL + "/comment/save", comment)
+    return this.http.post<Comment>(this.baseApiUrl + "/api/Comments", comment)
   }
-  
+
   findByTourItemId(id: string) {
-    return this.http.get<Comment[]>(environment.SERVER_API_URL + "/comment/find/by/tour/item/id/"+ id)
+    return this.http.get<Comment[]>(this.baseApiUrl + "/api/Comments"+ id)
   }
 }

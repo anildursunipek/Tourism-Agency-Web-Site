@@ -319,7 +319,7 @@ export class DashboardComponent implements OnInit {
 
     this.tourService.getAllTour().subscribe(res => {
       let wrapperTours: any[] = new Array();
-      let toursHead: Tour[] = res.filter(tour => tour.categoryTourId == null)
+      let toursHead: Tour[] = res.filter(tour => tour.categoryTourId == "")
 
       toursHead.forEach(tourHead => {
         wrapperTours.push({ head: tourHead, children: res.filter(tour => tour.categoryTourId == tourHead.id) })

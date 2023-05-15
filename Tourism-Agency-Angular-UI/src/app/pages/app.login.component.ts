@@ -2,46 +2,42 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { Login, User } from '../model';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './app.login.component.html',
+  providers: [
+    MessageService
+  ]
 })
 export class AppLoginComponent {
 
   login: Login = new Login();
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService, private messageService: MessageService) {
 
   }
 
   ngOnInit(): void {
 
   }
-
+  myMessageService(severity: string, summary: string, detail: string) {
+    this.messageService.add({ severity: severity, summary: summary, detail: detail });
+  }
   loginFunction() {
-    let u: User = new User();
-
-    u.name = "Batuhan"
-    u.surname = "Arslandaş"
-    u.fullName = "Batuhan Arslandaş"
-    u.email = "batuhan@hotmail.com"
-    u.phoneNumber = "05555555555"
-    u.username = "batuhan"
-    u.password = "123"
-    if (this.login.username == "admin") {
-      u.userType = "ADMIN"
-      this.authService.setUserLoggedIn(u);
-      this.router.navigate(['/component/order/list']);
-    } else {
-      this.authService.setUserLoggedIn(u);
-      this.router.navigate(['/dashboard']);
-    }
-
     this.authService.login(this.login).subscribe(res => {
-      const user: User = res as User;
-      this.authService.setUserLoggedIn(user);
-      this.router.navigate(['/dashboard']);
+        if(res == null){
+            this.myMessageService('error', 'Başarısız', 'Kullanıcı adı veya şifre yanlış.');
+        }else{
+            const user: User = res as User;
+            this.authService.setUserLoggedIn(user);
+            if(user.userType == "ADMIN"){
+                this.router.navigate(['/component/map']);
+            }else{
+                this.router.navigate(['/dashboard']);
+            }
+        }
     })
   }
 }

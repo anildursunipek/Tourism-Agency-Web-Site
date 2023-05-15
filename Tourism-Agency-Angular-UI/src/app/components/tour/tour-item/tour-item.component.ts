@@ -83,7 +83,7 @@ export class TourItemComponent implements OnInit {
   }
 
   confirmDelete() {
-    this.tourService.deleteTour(this.deleteTourItem.id).subscribe(res => {
+    this.tourItemService.deleteTourItem(this.deleteTourItem.id).subscribe(res => {
       this.myMessageService('success', 'Başarılı', 'Silme işlemi başarılı.');
       this.deleteTourItemDialog = false;
     }, err => {

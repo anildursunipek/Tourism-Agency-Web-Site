@@ -9,14 +9,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
+    baseApiUrl: string = environment.SERVER_API_URL;
 
   constructor(private router: Router, private http: HttpClient) { }
 
   login(login:Login): Observable<User> {
-    return this.http.post<User>(environment.SERVER_API_URL + '/login',login);
+    return this.http.get<User>(this.baseApiUrl + '/api/Users/login/' + login.username + "/" + login.password);
   }
 
-  
+
   setUserLoggedIn(user:User){
     localStorage.setItem('user', JSON.stringify(user));
   }

@@ -26,6 +26,16 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
             var users = await _tourismAgencyDbContext.Users.ToListAsync();
             return Ok(_mapper.Map<List<UserDto>>(users));
         }
+        [HttpGet("login/{username}/{password}")]
+        public async Task<IActionResult> GetUserByUsernameAndPassowrd(string username, string password)
+        {
+            var user = await _tourismAgencyDbContext.Users.Where(u => (u.Username == username) && (u.Password == password)).FirstOrDefaultAsync(); ;
+
+            if (user == null)
+                return Ok(null);
+
+            return Ok(_mapper.Map<UserDto>(user));
+        }
 
         [HttpGet]
         [Route("priority")]

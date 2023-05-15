@@ -7,14 +7,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class OrderService {
+    baseApiUrl: string = environment.SERVER_API_URL;
 
   constructor(private http: HttpClient) { }
 
   saveOrder(order: Order) {
-    return this.http.post<Order>(environment.SERVER_API_URL + "/order/save", order)
+    return this.http.post<Order>(this.baseApiUrl + "/api/order", order)
   }
 
   getOrders() {
-    return this.http.get<Order[]>(environment.SERVER_API_URL + "/order/get")
+    return this.http.get<Order[]>(this.baseApiUrl + "/api/order")
   }
 }
