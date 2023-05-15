@@ -147,6 +147,8 @@ import { TourItemComponent } from './components/tour/tour-item/tour-item.compone
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TourDetailComponent } from './components/tour/tour-detail/tour-detail.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
+import { MapComponent } from './components/map/map.component';
+import {GMapModule} from 'primeng/gmap';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -240,7 +242,8 @@ FullCalendarModule.registerPlugins([
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
-        AppCodeModule
+        AppCodeModule,
+        GMapModule
     ],
     declarations: [
         AppComponent,
@@ -289,7 +292,8 @@ FullCalendarModule.registerPlugins([
         TourItemComponent,
         DashboardComponent,
         TourDetailComponent,
-        OrderListComponent
+        OrderListComponent,
+        MapComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

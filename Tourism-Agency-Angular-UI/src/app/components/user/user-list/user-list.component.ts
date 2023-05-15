@@ -49,7 +49,6 @@ export class UserListComponent implements OnInit {
     }
     // dumy veri silinecek
 
-
     this.userService.getAllUser().subscribe(res => {
       this.users = res;
     })

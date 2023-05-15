@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   isDetail: boolean = true;
   selectedTourItem: TourItem = new TourItem();
   tours: Tour[] = new Array();
+  id:string;
   tourItemImages: any[] =
     [
       [
@@ -230,7 +231,6 @@ export class DashboardComponent implements OnInit {
         { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/01/orange-county-resort-alanya_3060.jpg" },
         { thumbnailImageSrc: "https://eksenturizm.com.tr/wp-content/uploads/2022/04/transatlantik.jpg" },
       ],
-
     ]
 
   responsiveOptions: any[] = [
@@ -261,13 +261,20 @@ export class DashboardComponent implements OnInit {
     console.log(this.tourItemImages[0][0]);
     console.log(this.tourItemImages[0]);
     console.log(this.tourItemImages);
-    
+
     this.getAllTour()
 
-    let id = this.route.snapshot.params['id']
-    console.log(id);
 
-    id != undefined ? this.findByTourId(id) : false;
+
+    setInterval(() => {
+      let id = this.route.snapshot.params['id']
+      if (id != undefined && id != this.id) {
+        this.id = id;
+        id != undefined ? this.findByTourId(id) : false;
+      }
+
+    }, 500)
+
 
   }
 

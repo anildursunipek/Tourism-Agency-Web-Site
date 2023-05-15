@@ -36,6 +36,7 @@ import { TourAddComponent } from './components/tour/tour-add/tour-add.component'
 import { TourItemComponent } from './components/tour/tour-item/tour-item.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
     imports: [
@@ -52,6 +53,7 @@ import { OrderListComponent } from './components/order-list/order-list.component
                     {path: 'component/tour/add', component: TourAddComponent},
                     {path: 'component/tour/item', component: TourItemComponent},
                     {path: 'component/order/list', component: OrderListComponent},
+                    {path: 'component/map', component: MapComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},

@@ -56,7 +56,7 @@ export class TourAddComponent implements OnInit {
 
       this.tours.push(tour);
     }
-    // dumy veri silinecek
+    // dumy veri silinecekk
     this.tourService.getAllTour().subscribe(res => {
       this.tours = res;
     })
