@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tourism_Agency_AspNet_Web_Api.Data;
 
@@ -11,9 +12,11 @@ using Tourism_Agency_AspNet_Web_Api.Data;
 namespace Tourism_Agency_AspNet_Web_Api.Migrations
 {
     [DbContext(typeof(TourismAgencyDbContext))]
-    partial class TourismAgencyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230515115248_Update model v2")]
+    partial class Updatemodelv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,13 +65,8 @@ namespace Tourism_Agency_AspNet_Web_Api.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TotalPerson")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("TourItemId")
                         .HasColumnType("uniqueidentifier");

@@ -7,6 +7,8 @@ namespace Tourism_Agency_AspNet_Web_Api.DTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public TourDto Tour { get; set; }
         public Guid TourId { get; set; }
+        public TourItemDetailDto TourItemDetail { get; set; }
     }
 }

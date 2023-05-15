@@ -24,7 +24,12 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         public async Task<IActionResult> GetAllTourItems()
         {
             var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
-            return Ok(_mapper.Map<List<TourItemDto>>(tourItems));
+            var tourItemsMap = _mapper.Map<List<TourItemDto>>(tourItems);
+            foreach (var item in tourItemsMap) { 
+                item.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == item.TourId));
+                item.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == item.Id));
+            }
+            return Ok(tourItemsMap);
         }
 
         [HttpGet]
@@ -32,16 +37,21 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         public async Task<IActionResult> GetTourByMinimumPrice()
         {
             var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
-            BinaryTree binaryTree = new BinaryTree();
-            TourItemDetail tourItemDetail;
-
-            foreach (var tourItem in tourItems)
+            var tourItemsMap = _mapper.Map<List<TourItemDto>>(tourItems);
+            foreach (var item in tourItemsMap)
             {
-                tourItemDetail = await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == tourItem.Id);
-                binaryTree.add(tourItemDetail.Price, tourItem);
+                item.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == item.TourId));
+                item.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == item.Id));
             }
 
-            TourItemDto minTourItemMap = _mapper.Map<TourItemDto>((TourItem)binaryTree.GetMin());
+            BinaryTree binaryTree = new BinaryTree();
+
+            foreach (var tourItem in tourItemsMap)
+            {
+                binaryTree.add(tourItem.TourItemDetail.Price, tourItem);
+            }
+
+            TourItemDto minTourItemMap = (TourItemDto)binaryTree.GetMin();
             return Ok(minTourItemMap);
         }
 
@@ -50,16 +60,21 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         public async Task<IActionResult> GetTourByMaxiumumPrice()
         {
             var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
-            BinaryTree binaryTree = new BinaryTree();
-            TourItemDetail tourItemDetail;
-
-            foreach (var tourItem in tourItems)
+            var tourItemsMap = _mapper.Map<List<TourItemDto>>(tourItems);
+            foreach (var item in tourItemsMap)
             {
-                tourItemDetail = await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == tourItem.Id);
-                binaryTree.add(tourItemDetail.Price, tourItem);
+                item.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == item.TourId));
+                item.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == item.Id));
             }
 
-            TourItemDto minTourItemMap = _mapper.Map<TourItemDto>((TourItem)binaryTree.GetMax());
+            BinaryTree binaryTree = new BinaryTree();
+
+            foreach (var tourItem in tourItemsMap)
+            {
+                binaryTree.add(tourItem.TourItemDetail.Price, tourItem);
+            }
+
+            TourItemDto minTourItemMap = (TourItemDto)binaryTree.GetMax();
             return Ok(minTourItemMap);
         }
 
@@ -68,16 +83,20 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         public async Task<IActionResult> GetTourItemByPrice([FromRoute] decimal price)
         {
             var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
-            BinaryTree binaryTree = new BinaryTree();
-            TourItemDetail tourItemDetail;
-
-            foreach (var tourItem in tourItems)
+            var tourItemsMap = _mapper.Map<List<TourItemDto>>(tourItems);
+            foreach (var item in tourItemsMap)
             {
-                tourItemDetail = await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == tourItem.Id);
-                binaryTree.add(tourItemDetail.Price, tourItem);
+                item.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == item.TourId));
+                item.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == item.Id));
+            }
+            BinaryTree binaryTree = new BinaryTree();
+
+            foreach (var tourItem in tourItemsMap)
+            {
+                binaryTree.add(tourItem.TourItemDetail.Price, tourItem);
             }
 
-            TourItemDto binarySearchResult = _mapper.Map<TourItemDto>((TourItem)binaryTree.search(price, binaryTree.root));
+            TourItemDto binarySearchResult = (TourItemDto)binaryTree.search(price, binaryTree.root);
             return Ok(binarySearchResult);
         }
 
@@ -86,12 +105,16 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         public async Task<IActionResult> GetTourItemById([FromRoute] Guid id)
         {
             var tourItem = await _tourismAgencyDbContext.TourItems.FirstOrDefaultAsync(t => t.Id == id);
+            var tourItemMap = _mapper.Map<TourItemDto>(tourItem);
             if (tourItem == null)
                 return NotFound();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            return Ok(tourItem);
+            tourItemMap.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == tourItemMap.TourId));
+            tourItemMap.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == tourItemMap.Id));
+
+            return Ok(tourItemMap);
         }
 
         [HttpPost]
@@ -121,6 +144,8 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
             var tourItemMap = _mapper.Map<TourItem>(tourItemDtoRequest);
             var tour = await _tourismAgencyDbContext.Tours.Where(t => t.Id == tourId).FirstOrDefaultAsync();
             tourItemMap.Tour = tour;
+            tourItemMap.TourItemDetail.Id = Guid.NewGuid();
+            tourItemMap.TourItemDetail.TourItemId = tourItemMap.Id;
 
             if (tourItemMap.Tour == null)
             {

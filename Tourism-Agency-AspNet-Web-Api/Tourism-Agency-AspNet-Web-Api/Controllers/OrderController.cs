@@ -23,7 +23,15 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         public async Task<IActionResult> GetAllOrders()
         {
             var orders = await _tourismAgencyDbContext.Orders.ToListAsync();
-            return Ok(_mapper.Map<List<OrderDto>>(orders));
+            var ordersMap = _mapper.Map<List<OrderDto>>(orders);
+            foreach (var order in ordersMap)
+            {
+                order.User = _mapper.Map<UserDto>(await _tourismAgencyDbContext.Users.FirstOrDefaultAsync(t => t.Id == order.UserId));
+                order.TourItem = _mapper.Map<TourItemDto>(await _tourismAgencyDbContext.TourItems.FirstOrDefaultAsync(t => t.Id == order.TourItemId));
+                order.TourItem.TourItemDetail = _mapper.Map<TourItemDetailDto>(await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == order.TourItem.Id));
+                order.TourItem.Tour = _mapper.Map<TourDto>(await _tourismAgencyDbContext.Tours.FirstOrDefaultAsync(t => t.Id == order.TourItem.TourId));
+            }
+            return Ok(ordersMap);
         }
 
         [HttpPost]

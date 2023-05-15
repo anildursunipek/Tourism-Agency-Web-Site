@@ -13,7 +13,9 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
         public string Address { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public string LongDescription { get; set; }
+        [Required]
+        public string ShortDescription { get; set; }
 
         [Required]
         public decimal Price { get; set; }

@@ -20,9 +20,10 @@ namespace Tourism_Agency_AspNet_Web_Api.Models
 
         [Required]
         public int Child { get; set; }
-
         [Required]
-        public int TotalPerson { get; set; }
+        public string PhoneNumber { get; set; }
+        [Required]
+        public string FullName { get; set; }
 
         [Required]
         [JsonIgnore]
