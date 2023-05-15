@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Tourism_Agency_AspNet_Web_Api.Data;
+using Tourism_Agency_AspNet_Web_Api.DataStructures;
 using Tourism_Agency_AspNet_Web_Api.DTO;
 using Tourism_Agency_AspNet_Web_Api.Models;
 
@@ -24,6 +25,36 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         {
             var comments = await _tourismAgencyDbContext.Comments.ToListAsync();
             return Ok(comments);
+        }
+
+        [HttpGet]
+        [Route("priority")]
+        public async Task<IActionResult> GetAllCommentsByPriority()
+        {
+            var comments = await _tourismAgencyDbContext.Comments.ToListAsync();
+            var commentMap = _mapper.Map<List<CommentDto>>(comments);
+            PriorityQueue priorityQueue = new PriorityQueue();
+            User user;
+            int priority;
+
+            foreach (var comment in commentMap)
+            {
+                user = await _tourismAgencyDbContext.Users.FirstOrDefaultAsync(u => u.Id == comment.UserId);
+                if (user.UserType == "ADMIN")
+                    priority = 1;
+                else if (user.UserType == "PERSONEL")
+                    priority = 2;
+                else if (user.UserType == "VIP")
+                    priority = 3;
+                else
+                    priority = 4;
+
+                priorityQueue.enqueue(priority, comment);
+            }
+            List<CommentDto> list = new List<CommentDto>();
+            list = priorityQueue.transferToList(list);
+
+            return Ok(list);
         }
 
         [HttpPost]

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Tourism_Agency_AspNet_Web_Api.Data;
+using Tourism_Agency_AspNet_Web_Api.DataStructures;
 using Tourism_Agency_AspNet_Web_Api.DTO;
 using Tourism_Agency_AspNet_Web_Api.Models;
 
@@ -24,6 +25,60 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         {
             var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
             return Ok(_mapper.Map<List<TourItemDto>>(tourItems));
+        }
+
+        [HttpGet]
+        [Route("minimum")]
+        public async Task<IActionResult> GetTourByMinimumPrice()
+        {
+            var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
+            BinaryTree binaryTree = new BinaryTree();
+            TourItemDetail tourItemDetail;
+
+            foreach (var tourItem in tourItems)
+            {
+                tourItemDetail = await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == tourItem.Id);
+                binaryTree.add(tourItemDetail.Price, tourItem);
+            }
+
+            TourItemDto minTourItemMap = _mapper.Map<TourItemDto>((TourItem)binaryTree.GetMin());
+            return Ok(minTourItemMap);
+        }
+
+        [HttpGet]
+        [Route("maximum")]
+        public async Task<IActionResult> GetTourByMaxiumumPrice()
+        {
+            var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
+            BinaryTree binaryTree = new BinaryTree();
+            TourItemDetail tourItemDetail;
+
+            foreach (var tourItem in tourItems)
+            {
+                tourItemDetail = await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == tourItem.Id);
+                binaryTree.add(tourItemDetail.Price, tourItem);
+            }
+
+            TourItemDto minTourItemMap = _mapper.Map<TourItemDto>((TourItem)binaryTree.GetMax());
+            return Ok(minTourItemMap);
+        }
+
+        [HttpGet]
+        [Route("{price:Decimal}")]
+        public async Task<IActionResult> GetTourItemByPrice([FromRoute] decimal price)
+        {
+            var tourItems = await _tourismAgencyDbContext.TourItems.ToListAsync();
+            BinaryTree binaryTree = new BinaryTree();
+            TourItemDetail tourItemDetail;
+
+            foreach (var tourItem in tourItems)
+            {
+                tourItemDetail = await _tourismAgencyDbContext.TourItemDetail.FirstOrDefaultAsync(t => t.TourItemId == tourItem.Id);
+                binaryTree.add(tourItemDetail.Price, tourItem);
+            }
+
+            TourItemDto binarySearch = _mapper.Map<TourItemDto>((TourItem)binaryTree.search(price, binaryTree.root));
+            return Ok(binarySearch);
         }
 
         [HttpGet]

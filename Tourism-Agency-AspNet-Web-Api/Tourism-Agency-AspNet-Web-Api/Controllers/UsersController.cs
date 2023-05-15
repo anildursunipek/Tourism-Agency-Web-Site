@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Tourism_Agency_AspNet_Web_Api.Data;
+using Tourism_Agency_AspNet_Web_Api.DataStructures;
 using Tourism_Agency_AspNet_Web_Api.DTO;
 using Tourism_Agency_AspNet_Web_Api.Models;
 
@@ -26,6 +27,35 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
             return Ok(_mapper.Map<List<UserDto>>(users));
         }
 
+        [HttpGet]
+        [Route("priority")]
+        public async Task<IActionResult> GetUsersByPriority()
+        {
+            var users = await _tourismAgencyDbContext.Users.ToListAsync();
+            var userDto = _mapper.Map<List<UserDto>>(users);
+            PriorityQueue priorityQueue = new PriorityQueue();
+            int priority;
+
+            foreach(var user in userDto)
+            {
+                if(user.UserType == "ADMIN")
+                    priority = 1;
+                else if(user.UserType == "PERSONEL")
+                    priority = 2;
+                else if (user.UserType == "VIP")
+                    priority= 3;
+                else
+                    priority = 4;
+
+                priorityQueue.enqueue(priority, user);
+            }
+
+            List<UserDto> list = new List<UserDto>();
+            list = priorityQueue.transferToList(list);
+
+            return Ok(list);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddEmployee([FromBody] UserDto userRequest)
         {
@@ -44,7 +74,7 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
 
         [HttpGet]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> GetUser([FromRoute] Guid id)
+        public async Task<IActionResult> GetUserById([FromRoute] Guid id)
         {
             var user = await _tourismAgencyDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
