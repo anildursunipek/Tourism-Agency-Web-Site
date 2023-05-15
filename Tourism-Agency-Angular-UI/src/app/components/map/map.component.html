@@ -1,5 +1,5 @@
 <p-gmap #gmap [style]="{'width':'100%','height':'80vh', 'margin-bottom': '1em'}" [options]="options" [overlays]="overlays"
-       (onMapClick)="handleMapClick($event)" ></p-gmap>
+       (onMapClick)="handleMapClick($event)" (onOverlayClick)="handleOverlayClick($event)" ></p-gmap>
 
 <!-- <button type="button" pButton label="Clear" icon="pi pi-times" (click)="clear()" style="margin-right:.25em"></button>
 <button type="button" pButton label="Zoom In" icon="pi pi-plus" (click)="zoomIn(gmap.getMap())" style="margin-right:.25em"></button>

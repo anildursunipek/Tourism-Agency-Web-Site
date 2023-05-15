@@ -35,10 +35,7 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
             cityDto.Latitute = city.Latitude;
             cityDto.dist = city.dist;
 
-            List<CityDto> list = new List<CityDto>();
-            list.Add(cityDto);
-
-            return Ok(list);
+            return Ok(cityDto);
         }
     }
 }

@@ -15,13 +15,13 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         let user: User = JSON.parse(localStorage.getItem('user'));
         this.model = user.userType == "ADMIN" ? [
+            { label: 'Harita', icon: 'pi pi-map-marker', routerLink: ['/component/map'] },
             { label: 'Rezervasyonlar', icon: 'pi pi-book', routerLink: ['/component/order/list'] },
             { label: 'Kullanıcılar', icon: 'pi pi-users', routerLink: ['/component/user/list'] },
             { label: 'Kullanıcı ekle', icon: 'pi pi-plus', routerLink: ['/component/user/add'] },
             { label: 'Tur başlığı ekle', icon: 'pi pi-plus', routerLink: ['/component/tour/add'] },
             { label: 'Tur ekle', icon: 'pi pi-plus', routerLink: ['/component/tour/item'] },
             { label: 'Turlar', icon: 'pi pi-plus', routerLink: ['/component/tour/item/list'] },
-            { label: 'Harita', icon: 'pi pi-map-marker', routerLink: ['/component/map'] },
             { label: 'Çıkış', icon: 'pi pi-power-off', routerLink: ['/login'] },
             // {
             //     label: 'UI Kit', icon: 'pi pi-star', routerLink: ['/uikit'],
