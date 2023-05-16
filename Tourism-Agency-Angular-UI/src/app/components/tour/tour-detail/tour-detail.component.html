@@ -102,15 +102,16 @@
                     <div class="col-12">
                         <div class="grid" *ngFor="let comment of comments">
                             <div class="col-4">
+                                <i class="pi pi-times mr-1" style="font-size: 2rem; color: red;" *ngIf="comment.user.userType == 'PERSONEL'" ></i>
                                 <i class="pi pi-star mr-1" style="font-size: 2rem" *ngIf="comment.user.userType == 'VIP'"></i>
                                 <p-avatar [label]="comment.user.name[0] + comment.user.surName[0]" styleClass="mr-2"
                                     size="large" shape="circle"></p-avatar>
-                                    <div>{{comment.user.fullName}}</div>
+                                    <div>{{comment.user.fullName}} {{comment.user.userType == "PERSONEL" ? "(PERSONEL)":""}}</div>
                             </div>
                             <div class="col-8">
                                 {{comment.description}}
                             </div>
-                            
+
                         </div>
                     </div>
 

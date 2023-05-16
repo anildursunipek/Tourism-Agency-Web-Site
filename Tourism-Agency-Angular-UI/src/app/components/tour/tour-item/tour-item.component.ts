@@ -247,7 +247,7 @@ export class TourItemComponent implements OnInit {
   changeTour() {
     this.tourItemService.findByTourId(this.tourItem.tour.id).subscribe(res => {
         res.forEach(r => {
-            r.imageUrls = this.tourItemImages[Math.floor(Math.random() * 30)]
+            r.imageUrls = this.tourItemImages[Math.floor(Math.random() * 27)]
         })
         this.tourItems = res;
         console.log(this.tourItems);

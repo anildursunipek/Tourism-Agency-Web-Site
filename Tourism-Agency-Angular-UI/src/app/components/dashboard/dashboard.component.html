@@ -22,8 +22,8 @@
 
 <div class="grid" *ngIf="tourItems && isDetail">
     <div class="col-12">
-        <h1>
-            {{name}} - Batuhan Turizm Seyahat Acentası
+        <h1 *ngIf="name">
+            {{name}} - Uludağ Turizm Seyahat Acentesi
         </h1>
     </div>
     <div class="col-3" *ngFor="let tourItem of tourItems">

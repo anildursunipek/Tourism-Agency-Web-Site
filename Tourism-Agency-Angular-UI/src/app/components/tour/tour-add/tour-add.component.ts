@@ -12,6 +12,7 @@ import { TourService } from 'src/app/services/tour/tour.service';
 export class TourAddComponent implements OnInit {
 
   tours: Tour[] = new Array();
+  tours2: Tour[] = new Array();
   tour: Tour = new Tour();
   submitted: boolean = false;
   deleteTourDialog: boolean = false;
@@ -59,6 +60,7 @@ export class TourAddComponent implements OnInit {
   getAllTour() {
     this.tourService.getAllTour().subscribe(res => {
       this.tours = res;
+      this.tours2 = res.filter(r => r.categoryTourId == "")
     })
   }
 

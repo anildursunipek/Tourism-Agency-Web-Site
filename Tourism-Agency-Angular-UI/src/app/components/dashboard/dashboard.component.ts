@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   items: MenuItem[] = new Array();
   tourItems: TourItem[] = new Array();
   images: string[] = new Array();
-  name: string = "Günübirlik Turlar";
+  name: string = "";
   isDetail: boolean = true;
   selectedTourItem: TourItem = new TourItem();
   tours: Tour[] = new Array();
@@ -255,8 +255,11 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.images.push("https://eksenturizm.com.tr/wp-content/uploads/2021/12/banner-e1640158060407.jpg");
-    this.images.push("https://eksenturizm.com.tr/wp-content/uploads/2021/12/banner-e1640158060407.jpg");
+    this.images.push("assets/1.jpg");
+    this.images.push("assets/2.jpg");
+    this.images.push("assets/3.jpg");
+    this.images.push("assets/4.jpg");
+    this.images.push("assets/5.jpg");
     this.images.push("https://eksenturizm.com.tr/wp-content/uploads/2021/12/banner-e1640158060407.jpg");
     console.log(this.tourItemImages[0][0]);
     console.log(this.tourItemImages[0]);
@@ -276,7 +279,7 @@ export class DashboardComponent implements OnInit {
   findByTourId(id: string) {
     this.tourItemService.findByTourId(id).subscribe(res => {
         res.forEach(r => {
-            r.imageUrls = this.tourItemImages[Math.floor(Math.random() * 30)]
+            r.imageUrls = this.tourItemImages[Math.floor(Math.random() * 27)]
         })
         this.tourItems = res;
       if (res.length != 0) {
