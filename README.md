@@ -9,5 +9,3 @@
 - Yakup GÜRER - 031990081
 - Ramiz Can AKBIYIK - 032190062
 - Talha DAĞLAYAN - 032190070
-- Muhammed Ali GEDİKLİ - 032190010  
-- Abdullah AYTUNÇ – 032190006
