@@ -29,12 +29,18 @@ namespace Tourism_Agency_AspNet_Web_Api.Controllers
         [HttpGet("login/{username}/{password}")]
         public async Task<IActionResult> GetUserByUsernameAndPassowrd(string username, string password)
         {
-            var user = await _tourismAgencyDbContext.Users.Where(u => (u.Username == username) && (u.Password == password)).FirstOrDefaultAsync(); ;
-
-            if (user == null)
-                return Ok(null);
-
-            return Ok(_mapper.Map<UserDto>(user));
+            /*var user = await _tourismAgencyDbContext.Users.Where(u => (u.Username == username) && (u.Password == password)).FirstOrDefaultAsync();*/
+            var users = await _tourismAgencyDbContext.Users.ToListAsync();
+            MyHash hash = new MyHash(users.Count * 3);
+            foreach (var u in users) {
+                hash.Insert(u);
+            }
+            var user = hash.FindUser(username);
+            if (user != null && user.Password == password)
+            {
+                return Ok(_mapper.Map<UserDto>(user));
+            }
+            return Ok(null);
         }
 
         [HttpGet]

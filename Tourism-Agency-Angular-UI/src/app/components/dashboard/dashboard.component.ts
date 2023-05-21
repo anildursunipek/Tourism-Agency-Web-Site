@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { CircularLinkedList } from 'src/app/circular-linked-list/circular-linked-list';
+import { Node } from 'src/app/circular-linked-list/node';
 import { Tour, TourItem } from 'src/app/model';
 import { TourItemService } from 'src/app/services/tour-item/tour-item.service';
 import { TourService } from 'src/app/services/tour/tour.service';
@@ -20,6 +22,8 @@ export class DashboardComponent implements OnInit {
   selectedTourItem: TourItem = new TourItem();
   tours: Tour[] = new Array();
   id:string;
+  currentImage:string;
+  currentNode:Node;
   tourItemImages: any[] =
     [
       [
@@ -274,6 +278,20 @@ export class DashboardComponent implements OnInit {
         id != undefined ? this.findByTourId(id) : false;
       }
     }, 500)
+
+    // circular image
+    var circularLinkedList = new CircularLinkedList();
+    this.images.forEach(url => {
+        circularLinkedList.add(url);
+    });
+
+    this.currentNode = circularLinkedList.head;
+    this.currentImage = circularLinkedList.head.url;
+
+    setInterval(() => {
+        this.currentNode = this.currentNode.next;
+        this.currentImage = this.currentNode.url;
+      }, 2000)
   }
 
   findByTourId(id: string) {

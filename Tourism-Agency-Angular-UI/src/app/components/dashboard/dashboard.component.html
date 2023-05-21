@@ -1,6 +1,9 @@
 <div class="grid">
     <div class="col-12">
-        <p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions" [numVisible]="5" [circular]="true"
+
+        <p-image id="dashboardImage" [src]="currentImage" alt="Image" width="100%" [preview]="true"></p-image>
+
+        <!-- <p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions" [numVisible]="5" [circular]="true"
             [autoPlay]="true" [transitionInterval]="3000">
             <ng-template pTemplate="item" let-item>
                 <img [src]="item" style="width: 100%; display: block;" />
@@ -10,7 +13,7 @@
                     <img [src]="item" style="display: block; width: 70px; height: 50px;" />
                 </div>
             </ng-template>
-        </p-galleria>
+        </p-galleria> -->
     </div>
 </div>
 
